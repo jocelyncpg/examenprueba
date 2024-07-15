@@ -24,7 +24,7 @@
 
 			<!-- Header -->
 			<div id="header">
-				<img src="{% static 'img/logoempresa.png' %}" alt="" style="height: 200px;">
+				<img src="{% static 'img/logoempresa2.png' %}" alt="" style="height: 200px;">
 				
 
 				<!-- Logo -->
@@ -124,16 +124,15 @@
 		</div>
 
   
-<br>
+<br><div class="container">
+		<center>
         <div class="audio-container">
-		  <audio id="audioPlayer" controls style="margin-left: 35%;">
+		  <audio id="audioPlayer" controls >
 			<source id="audioSource" src="{% static 'audio/TOOL.mp3' %}" type="audio/mpeg">
 			Tu navegador no soporta la reproducción de audio.
-		  </audio>
-	  
-		  
+		  </audio>		  
 		</div>
-		<button style="margin-left: 42%;" onclick="playRandomSong()">Aleatoria</button>
+		<button onclick="playRandomSong()">Aleatoria</button>
 		<!-- Lista de canciones -->
 		<ul id="playlist" style="display: none;">
 		  <li data-src="{% static 'audio/mac.mp3' %}">Canción 2</li>
@@ -142,6 +141,8 @@
 
 		  <!-- Agrega más canciones según sea necesario -->
 		</ul>
+	</center>
+	</div>	
 <br><br><br><br><br>
                 {% block content %}{% endblock %}
 
@@ -151,7 +152,7 @@
 				<div id="footer">
 					<div class="container">
 						<div class="row">
-							<section class="col-3 col-6-narrower col-12-mobilep">
+							<section class="col-5">
 								<h3>Links to Stuff</h3>
 								<ul class="links">
 									<li><a href="#">Mattis et quis rutrum</a></li>
@@ -163,7 +164,7 @@
 									<li><a href="#">Sed et dapibus mattis</a></li>
 								</ul>
 							</section>
-							<section class="col-3 col-6-narrower col-12-mobilep">
+							<section class="col-5">
 								<h3>More Links to Stuff</h3>
 								<ul class="links">
 									<li><a href="#">Duis neque nisi dapibus</a></li>
@@ -175,18 +176,19 @@
 									<li><a href="#">Rutrum amet varius</a></li>
 								</ul>
 							</section>
-							
+							<section class="col-2">
+								<h3>Social Red</h3>
+								<!-- Icons -->
+								<ul class="icons">
+									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+									<li><a href="#" class="icon brands fa-google-plus-g"><span class="label">Google+</span></a></li>
+								</ul>
+							</section>
 						</div>
 					</div>
-
-					<!-- Icons -->
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-							<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-							<li><a href="#" class="icon brands fa-google-plus-g"><span class="label">Google+</span></a></li>
-						</ul>
 
 					<!-- Copyright -->
 						<div class="copyright">
