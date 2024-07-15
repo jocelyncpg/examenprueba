@@ -1,0 +1,61 @@
+{% extends "demo/base.html" %}
+
+{%block content %}
+
+
+    <style>
+        .idMensaje{
+            color: black;
+        }
+        pre{
+            color: white;
+            text-align: left;
+            font-size: 17px;
+        }
+      </style>
+					<!-- Banner -->
+                    <section id="banner">
+                        <header>
+                            <h2>Bienvenidos a LIVE music</h2>
+                            <p> Postulantes</p>
+                        </header>
+                    </section>
+
+    <div style=" text-align: center;">
+        <h2>Datos Postulantes</h2><br>
+<div id="idMensajes">
+    {% if mensaje %}
+    {{mensaje}}
+    {% endif %}
+</div>
+
+<main class="products container">
+    <div class="container" >
+    <form action="{% url 'alumnosAdd' %}" method="POST">
+                    {% csrf_token %}
+
+                    <pre >Rut:                <input type="text" name="rut"  ></pre>
+                    <pre >Nombre:             <input type="text" name="nombre"  ></pre>
+                    <pre >Apellido P.:        <input type="text" name="paterno"  ></pre>
+                    <pre >Apellido M.:        <input type="text" name="materno"  ></pre>
+                    <pre >Fecha Nac.:            <input type="date" name="fechaNac"  ></pre>
+                    <pre >Genero                 <select name="genero">
+                        {% for genero in generos %}
+                        <option value="{{genero.id_genero}}">{{genero.genero}}</option>
+                        {% endfor %}
+                    </select></pre>
+                    <pre>Celular:            <input type="text" name="telefono"  ></pre>
+                    <pre >Email:              <input type="mail" name="email"  ></pre>
+                    <pre >Direccion:         <input type="text" name="direccion"  ></pre>
+
+<br><br>
+                    <input type="submit" name="opcion" value="Agregar">
+
+                </form> <br><br>
+                <a href="{% url 'crud'  %}" ><button class="btn btn-danger">Volver</button></a>   
+
+            </div>
+            </main>
+
+
+    {% endblock %}

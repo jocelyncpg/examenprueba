@@ -1,0 +1,80 @@
+{% extends "demo/base.html" %}
+
+{%block content %}
+
+
+    <style>
+        .idMensaje{
+            color: black;
+        }
+        pre{
+            color: white;
+            text-align: left;
+            font-size: 17px;
+        }
+      </style>
+    <style>
+        .idMensaje{
+            color: white;
+        }
+    
+        body{
+          background-color: black;
+          color: white;
+        }
+        h1{
+          color: white;
+          font-size: 75px;
+        }
+      </style>
+					<!-- Banner -->
+          <section id="banner">
+            <header>
+                <h2>Bienvenidos a LIVE music</h2>
+                <p> Editar Postulantes</p>
+            </header>
+        </section>
+
+    <div style=" text-align: center;">
+      {% if postulante %}
+
+         
+          <div id="idMensajes" style="color: white;">  
+            {% if mensaje %}
+            {{mensaje}}
+            {% endif %}   
+    </div>
+
+    <main class="products container">
+          <div class="container" >
+          <form action="{% url 'alumnosUpdate' %}" method="POST">
+              {% csrf_token %}
+
+              <pre>Rut:                <input type="text" name="rut"  value="{{postulante.rut}}" ></pre>
+              <pre>Nombre:             <input type="text" name="nombre"  value="{{postulante.nombre}}"  ></pre>
+              <pre>Apellido P.:        <input type="text" name="paterno"  value="{{postulante.apellido_paterno}}" ></pre>
+              <pre>Apellido M.:        <input type="text" name="materno"  value="{{postulante.apellido_materno}}" ></pre>
+              <pre>Fecha Nac.:             <input type="date" name="fechaNac"  value="{{postulante.fecha_nacimiento|date:'Y-m-d'}}" ></pre>
+              <pre>Genero                    <select name="genero">
+                  {% for genero in generos %}
+                      {% if genero.genero == postulante.id_genero.genero %}
+                      <option value="{{genero.id_genero}}" selected>{{genero.genero}}</option>
+                      {% else %}
+                      <option value="{{genero.id_genero}}" >{{genero.genero}}</option>           
+                      {% endif %}
+                      {% endfor %}
+
+              </select></pre>
+              <pre>Celular:            <input type="text" name="telefono"  value="{{postulante.telefono}}" ></pre>
+              <pre>Email:              <input type="mail" name="email"  value="{{postulante.email}}"></pre>
+              <pre>Direccion:         <input type="text" name="direccion"  value="{{postulante.direccion}}"></pre>
+              <br><br>
+              <input type="submit" name="opcion" value="Actualizar">
+          </form><br><br>
+        {% endif %} 
+     <a href="{% url 'crud'  %}" ><button class="btn btn-danger">Volver</button></a>   
+
+    </div>
+  </main>
+
+    {% endblock %}

@@ -1,0 +1,158 @@
+
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>LIVE music</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href={% static "/css/main.css" %} />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+            <body class="is-preload">
+                <div id="page-wrapper">
+   
+			<!-- Header -->
+				<div id="header">
+					<img src="{% static 'images/logoempresa2.png' %}" alt="" style="height: 200px;">
+					
+
+					<!-- Logo -->
+				
+						<h1><a href="{% url 'index'%}" id="logo">LIVE MUSIC <em>Tenemos la música que buscas</em></a></h1>
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li {%if clase == 'inicio'%}
+								class="current" {%endif%}><a href="/">Inicio</a></li>
+								<li>
+									<a href="#">Productos</a>
+									<ul>
+										<li><a href="vinilo">Vinilos</a></li>
+										<li><a href="cd">CD</a></li>
+										<li><a href="cassette">Cassette</a></li>
+										<li><a href="#">Otro</a></li>
+									</ul>
+								</li>
+							<li {%if clase == 'contactanos'%}
+								class="current" {%endif%}><a href="contactanos">Contactanos</a></li>
+
+								<li>
+									{% if user.is_authenticated %}
+									
+									<a href="#">{{user.username}}</a>
+									<ul>
+										<li class="nav-item">
+										<a href="{% url 'perfil'%}">Mi Perfil</a>
+									</li>
+										<form id="logoutForm" action="accounts/logout/" method="post" class="navbar-right">
+											{% csrf_token %}
+									        <li ><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+											</ul>
+										</form>
+
+									
+									{% else %}
+									<li class="nav-item">
+										<a href="{% url 'login'%}">Login</a>
+									  </li>
+									{% endif %}
+								</li>
+								<li {%if clase == 'galeria'%}
+                                class="current" {%endif%}><a href="{% url 'galeria'%}">Galeria</a></li>
+								{% if user.is_authenticated %}
+
+								{% else %}
+								<li {%if clase == 'registro'%}
+                                class="current" {%endif%}><a href="{% url 'registro'%}">Registro</a></li>
+								{% endif %}
+								 {% comment %} <li><a href="two-sidebar.html">Two Sidebar</a></li>
+								<li><a href="no-sidebar.html">No Sidebar</a></li>  {% endcomment %}					<li {%if clase == 'comprar'%}
+								class="current" {%endif%}><a href="comprar"><img src="{% static 'img/carrito.jpeg' %}" id="img-carrito" alt="" style="align-content: center;" width="25" height="25"></a>								
+								<ul>
+									<li>
+										<a href="#">Mi carrito</a>
+										<input type="checkbox" id="menu">
+										<div>
+											<ul>
+												<li class="submenu">
+													<div id="carrito">
+														<table id="lista-carrito">
+															<thead>
+																<tr>
+																	<th>Imagen</th>
+																	<th>Nombre</th>
+																	<th>Precio</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody></tbody>
+														</table>
+														<a href="#" id="vaciar-carrito" class="btn-3">Vaciar Carrito</a>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<a href="productos">Productos</a>
+										<ul>
+											<li><a href="#">Vinilos</a></li>
+											<li><a href="#">CD</a></li>
+											<li><a href="#">Cassette</a></li>
+											<li><a href="#">Otro</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+
+						</ul>
+					</nav>
+
+			</div>
+                         
+        
+
+					<!-- Banner -->
+                    <section id="banner">
+                        <header>
+                            <h2>Bienvenidos a LIVE music</h2>
+                            <p>PAGAR</p>
+                        </header>        
+                        <table>
+                            <tr>
+                                <th>Total a Pagar: </th>
+                                <td id="total-pago"> 0.00</td>
+                            </tr>
+                        </table>  
+						     <!-- Aquí puedes agregar el formulario de pago -->
+							 <script>
+								// Obtener el total de sessionStorage
+								const total = sessionStorage.getItem('total');
+								if (total) {
+									document.getElementById('total-pago').textContent = total;
+								} else {
+									document.getElementById('total-pago').textContent = '0.00';
+								}
+							</script>   
+							<a href="realizarpago" onclick="redirigirAPago()">
+								<button class="btn btn-info">Pagar</button>
+							</a>      
+							<style>
+								table {
+									width: 50%;
+									margin: 20px auto;
+									border-collapse: collapse;
+								}
+								th, td {
+									border: 3px solid black;
+									padding: 5px;
+									text-align: left;
+									color: black;
+								}
+							</style> 
+  
+</body>
+</html>

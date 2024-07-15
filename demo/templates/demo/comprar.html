@@ -1,0 +1,500 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar - LIVE music</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    
+</head>
+<body >
+    <header id="header">
+        <img src="{% static 'images/logoempresa2.png' %}" alt="" style="height: 200px;">
+        <h1><a href="/" id="logo">LIVE MUSIC <em>Tenemos la música que buscas</em></a></h1>
+
+				<!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li {%if clase == 'inicio'%}
+                            class="current" {%endif%}><a href="/">Inicio</a></li>
+                            <li>
+                                <a href="#">Productos</a>
+                                <ul>
+                                    <li><a href="vinilo">Vinilos</a></li>
+                                    <li><a href="cd">CD</a></li>
+                                    <li><a href="cassette">Cassette</a></li>
+                                    <li><a href="#">Otro</a></li>
+                                </ul>
+                            </li>
+                        <li {%if clase == 'contactanos'%}
+                            class="current" {%endif%}><a href="contactanos">Contactanos</a></li>
+
+                            <li>
+                                {% if user.is_authenticated %}
+                                
+                                <a href="#">{{user.username}}</a>
+                                <ul>
+                                    <li class="nav-item">
+                                    <a href="{% url 'perfil'%}">Mi Perfil</a>
+                                </li>
+                                    <form id="logoutForm" action="accounts/logout/" method="post" class="navbar-right">
+                                        {% csrf_token %}
+                                        <li ><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+                                        </ul>
+                                    </form>
+
+                                
+                                {% else %}
+                                <li class="nav-item">
+                                    <a href="{% url 'login'%}">Login</a>
+                                  </li>
+                                {% endif %}
+                            </li>
+                            <li {%if clase == 'galeria'%}
+                            class="current" {%endif%}><a href="{% url 'galeria'%}">Galeria</a></li>
+                            {% if user.is_authenticated %}
+
+                            {% else %}
+                            <li {%if clase == 'registro'%}
+                            class="current" {%endif%}><a href="{% url 'registro'%}">Registro</a></li>
+                            {% endif %}
+                             {% comment %} <li><a href="two-sidebar.html">Two Sidebar</a></li>
+                            <li><a href="no-sidebar.html">No Sidebar</a></li>  {% endcomment %}				
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+
+        </div>
+
+
+    </header>
+<style>
+
+    .carrito-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        width: 100%;
+    }
+  
+    .carrito-precio {
+        font-weight: bold;
+    }
+    
+  
+    
+    .carrito-pagar {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .btn-info {
+        background-color: red;
+        color: white;
+        border: none;
+        margin-left: 50%;
+        margin-right: 50%;
+        padding: 10px 20px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+    .btn-info:hover {
+        background-color: red;
+    }
+    
+    @media (max-width: 768px) {
+        .carrito-items {
+            flex-direction: column;
+        }
+    
+        .carrito-item {
+            width: 100%;
+        }
+    }
+    
+    
+</style>
+    <section id="banner">
+        <header>
+            <h2>Nuestros Productos</h2>
+            <p>Disponibles en todos los formatos.</p>
+        </header>
+    </section>
+
+    <div class="carrito">
+        <div class="carrito-items">
+            <table class="carrito-items">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <!-- Los elementos del carrito se agregan dinámicamente desde JavaScript -->
+          
+        </div>
+
+        <div class="carrito-total">
+            <strong>Total: </strong><span class="total-precio">$0</span>
+        </div>
+        <br>
+        <a href="#" onclick="redirigirAPago()">
+            <button class="btn btn-info">Pagar</button>
+        </a>
+
+        <br><br>
+    </div>
+
+    <header>
+        <div class="header-content container">
+          <div class="header-txt">
+    
+       </header>
+
+    <main class="products container">
+        <div class="box-container" id="lista-1">
+            <div class="box" >
+                <img src="{% static 'imagenbanda/kendrickl.jpeg' %}" alt="">
+                <div class="product-txt">
+                    <h3>Kendrick Lamar</h3>
+                    <p>Formato en vinilo</p>
+                    <p class="precio">43000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/chancho.jpeg' %}" alt="">
+                <div class="product-txt">
+                    <h3>Chancho en Piedra</h3>
+                    <p>Formato en Vinilo</p>
+                    <p class="precio">53000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/specials.jpg' %}" alt="">
+                <div class="product-txt">
+                    <h3>The Specials</h3>
+                    <p>Formato en CD</p>
+                    <p class="precio">33000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/bloquedepre.png' %}" alt="">
+                <div class="product-txt">
+                    <h3>Bloque Depresivo</h3>
+                    <p>Formato en Cassete</p>
+                    <p class="precio">77000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box" style="display: none;">
+                <img src="{% static 'imagenbanda/bowie.png' %}" alt="">
+                <div class="product-txt">
+                    <h3>David Bowie</h3>
+                    <p>Formato en Cassette</p>
+                    <p class="precio">22000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/tool1.jpeg' %}" alt="">
+                <div class="product-txt">
+                    <h3>Tool</h3>
+                    <p>Formato en Cassette</p>
+                    <p class="precio">30000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/flori.jpeg' %}" alt="">
+                <div class="product-txt">
+                    <h3>La Floripondio</h3>
+                    <p>Formato en CD</p>
+                    <p class="precio">13000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/artic.jpeg' %}" alt="">
+                <div class="product-txt">
+                    <h3>Arctic Monkeys</h3>
+                    <p>Formato en Cassette</p>
+                    <p class="precio">18000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/post.jpeg' %}" alt="">
+                <div class="product-txt">
+                    <h3>Post Malone</h3>
+                    <p>Formato en Cassette</p>
+                    <p class="precio">15000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/metallica.jpeg' %}" alt="">
+                <div class="product-txt">
+                    <h3>Metallica</h3>
+                    <p>Calidad premium</p>
+                    <p class="precio">45000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar al carrito</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{% static 'imagenbanda/theb.jpeg' %}" alt="">
+                <div class="product-txt">
+                    <h3>The Beatles</h3>
+                    <p>Formato en Vinilo</p>
+                    <p class="precio">58000</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al carrito</a>
+                </div>
+            </div>
+        </div>
+        <!-- Botón para cargar más productos -->
+        <div class="btn-2" id="load-more">Cargar Más</div>
+        <br>
+    </main>
+
+    <br><br>
+
+<!-- Footer -->
+<footer id="footer-inicio" class="footer">
+
+    <div class="footer-content container">
+        <div class="link">
+            <h3>Contactos</h3>
+            <ul>
+                <li><a href="#">+56 9 5451 2548</a></li>
+                <li><a href="#">+56 2 5478 5545</a></li>                    
+            </ul>
+        </div>
+
+        <div class="link">
+            <h3>Correo</h3>
+            <ul>
+                <li><a href="#">livemusic@gmail.cl</a></li>
+            </ul>
+        </div>
+
+        <div class="link">
+            <h3>Ubicación</h3>
+            <ul>
+                <li><a href="#">Dr. Manuel Barros Borgoño 71 OF 1306, 
+                                <br>7500593 Providencia, Región Metropolitana</a></li>
+        </div>
+    </div>
+
+</footer>
+        
+<script src="static/js/load.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style>
+			
+        .footer{
+            padding: 50px 0;
+            background-color: #000000;
+            color: white;
+        }
+        
+        .footer-content{
+            display: flex;
+            justify-content: space-between;
+        }
+    
+    </style>
+ <style>
+            .info-txt{
+                width: 50%;
+            }
+            
+            .products{
+                padding: 0 0 50px 0;
+                text-align: center;
+            }
+            
+            .box-container{
+                margin-top: 55px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .box{
+                border-top: 2px solid #fb5959;
+                padding: 20px;
+                border-radius: 15px;
+                z-index: 1000;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                display: none;
+            }
+            
+            .box:nth-child(1),
+            .box:nth-child(2),
+            .box:nth-child(3),
+            .box:nth-child(4){
+                display: inline-block;
+            }
+            
+            .box img{
+                width: 120px;
+            }
+            
+            .product-txt h3{
+                font-size: 20px;
+                color: #1d1d1b;
+                margin-bottom: 10px;
+            }
+            
+            .product-txt p{
+                margin-bottom: 25px;
+            }
+            
+            .precio{
+                font-size: 15px;
+                color: #d46419;    
+            }
+            
+            .btn-2{
+                background-color: #fb5959;
+                margin-top: 50px;
+                display: inline-block;
+                padding: 13px 35px;
+                border-radius: 25px;
+                color: #ffffff;
+                font-size: 16px;
+                cursor: pointer;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+            
+            .btn-2:hover{
+                background-color: #fb5959;
+            }
+            
+            .btn-3{
+                display: inline-block;
+                padding: 5px 25px;
+                background-color: #fb5959;
+                color: #ffffff;
+                border-radius: 10px;
+            }
+            
+            .btn-3:hover{
+                background-color: #fb5959;
+            }
+            
+            .btn-primary{
+               background-color: #fb5959;  
+            }
+            
+            #menu{
+                display: none;
+            }
+            
+            .menu-icono{
+                width: 25px;
+            }
+            
+            .menu label{
+                cursor: pointer;
+                display: none;
+            }
+            
+            .submenu{
+                position:relative;
+            }
+            
+            .submenu #carrito{
+                display:none;
+            }
+            
+            
+            .submenu:hover #carrito{
+                display: block;
+                text-align: center;
+                right: 0;
+                left: 0;
+                top: 100%;
+                background-color: #77777797;
+                padding: 20px;
+                min-width: 400px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            }
+            
+            table{
+                width: 100%;
+            }
+            
+            th, td{
+                color: #ffffff;
+            }
+            
+            .borrar{
+                background-color: #fb5959;
+                border-radius: 50%;
+                padding: 5px 10px;
+                text-decoration: none;
+                color: #ffffff;
+                font-weight: 800;
+            }
+            
+            .bg{
+                position: absolute;
+                width: 700px;
+                top: 0;
+                right: 0;
+                z-index: -1;
+            }
+            
+            .header-content{
+                display: flex;
+                align-items: center;
+            }
+            
+            .header-txt{
+                width: 50%;
+                margin-right: 50px;
+            }
+            
+            .header-txt h1{
+                font-size: 55px;
+                line-height: 65px;
+                color: #1d1d1b;
+                margin-bottom: 35px;
+            }
+            
+            .header-txt h2{
+                font-size: 55px;
+                line-height: 65px;
+                color: #1d1d1b;
+                margin-bottom: 35px;
+            }
+            
+            .header-txt p{
+                font-size: 16px;
+                color: #5e5e5e;
+                margin-bottom: 45px;
+            }
+            
+            .header-txt span{
+                color: #fb5959;
+            }
+        </style>
+
+</body>
+</html>

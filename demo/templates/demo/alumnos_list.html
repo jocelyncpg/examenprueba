@@ -1,0 +1,91 @@
+{% extends "demo/base.html" %}
+
+{%block content %}
+
+<style>
+  body{
+    background-color: rgb(37, 33, 33);
+  }
+  td{
+    color:white;
+    font-size: 18px;
+  }
+  button{
+    font-size: 15px;
+  }
+  @media screen and (max-width: 736px) {
+  .container1{ width: calc(100% - 80px);}
+}
+</style>
+					<!-- Banner -->
+          <section id="banner">
+            <header>
+                <h2>Bienvenidos a LIVE music</h2>
+                <p> Postulantes</p>
+            </header>
+        </section>
+
+     <div id="idMensaje">
+          {% if mensaje %}
+          {{mensaje}}
+          {%endif%}
+      </div>
+
+      <header class="container1">
+        <div class="container1-content container">
+            <div class="container1-txt">
+                  <table>
+                        {%if demo %}
+                      <thead>
+                        <tr>
+
+                          <th scope="col">RUN</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Telefono</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for postulante in demo %}
+                          <tr>
+                        
+                              <td>{{postulante.rut}}</td>
+                              <td>{{postulante.nombre}} {{postulante.apellido_paterno}} {{postulante.apellido_materno}}</td>
+                              <td>{{postulante.telefono}}</td>
+                              <td> <a href="{% url 'alumnos_del' pk=postulante.rut %}" ><button class="btn btn-danger">Eliminar</button></a>   
+                                </a></td>                
+                              <td><a href="{% url 'alumnos_findEdit' pk=postulante.rut %}"><button class="btn btn-success">Modificar</button></a></td>  
+                            
+                            </tr>
+                          
+                          {% endfor %}
+                      
+                      {% endif %}    
+                      </tbody>
+                    </table>
+                    <a href="{% url 'alumnosAdd'%}">
+                      <button class="btn btn-info">Agregar</button>
+                      </a>
+                    <a href="{% url 'index'%}">
+                      <button class="btn btn-info">Inicio</button>
+                      </a>
+                      <a href="{% url 'listadoSQL'%}">
+                        <button class="btn btn-info">Lista</button>
+                        </a> 
+                    </div>    
+                  </div>   
+                </header>
+
+
+                   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    $(document).ready(function(){
+      $("#idMensaje").delay(2000).fadeOut("slow");
+    })
+  </script>
+
+
+
+
+  {%endblock%}
