@@ -13,13 +13,7 @@
             font-size: 17px;
         }
       </style>
-					<!-- Banner -->
-                    <section id="banner">
-                        <header>
-                            <h2>Bienvenidos a LIVE music</h2>
-                            <p> Postulantes</p>
-                        </header>
-                    </section>
+
 
     <div style=" text-align: center;">
         <h2>Datos Postulantes</h2><br>
@@ -38,24 +32,57 @@
                     <pre >Nombre:             <input type="text" name="nombre"  ></pre>
                     <pre >Apellido P.:        <input type="text" name="paterno"  ></pre>
                     <pre >Apellido M.:        <input type="text" name="materno"  ></pre>
+                    <br>
                     <pre >Fecha Nac.:            <input type="date" name="fechaNac"  ></pre>
-                    <pre >Genero                 <select name="genero">
+                    <br>
+                    <pre >Genero                 <select name="genero"> 
+
                         {% for genero in generos %}
                         <option value="{{genero.id_genero}}">{{genero.genero}}</option>
                         {% endfor %}
                     </select></pre>
                     <pre>Celular:            <input type="text" name="telefono"  ></pre>
+                    <br>
                     <pre >Email:              <input type="mail" name="email"  ></pre>
+                    <br>
                     <pre >Direccion:         <input type="text" name="direccion"  ></pre>
 
 <br><br>
                     <input type="submit" name="opcion" value="Agregar">
 
                 </form> <br><br>
-                <a href="{% url 'crud'  %}" ><button class="btn btn-danger">Volver</button></a>   
 
             </div>
             </main>
+<style>
+    input[type="text"] {
+        background-color: white; /* Fondo blanco */
+        color: black; /* Color del texto negro */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    input[type="text"]::placeholder {
+        color: #999; /* Color del texto del placeholder */
+    }
+    /* Estilos para el campo select */
+select {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Color del texto negro */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
 
+/* Estilos para las opciones dentro del select */
+select option {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Color del texto negro */
+}
+
+</style>
 
     {% endblock %}

@@ -12,8 +12,8 @@ urlpatterns = [
     path('cassette', views.cassette, name='cassette'),   
     path('cd', views.cd, name='cd'),     
     path('pagar/', views.pagar, name='pagar'),
-    path('realizarpago/', views.realizarpago, name='realizarpago'),      
-    
+    path('pagoexitoso/', views.pagoexitoso, name='pagoexitoso'),      
+    path('saldoinsuficiente/', views.saldoinsuficiente, name='saldoinsuficiente'),      
        # Ingresar
     path('listadoSQL', views.listadoSQL, name='listadoSQL'),
     path('crud/', views.crud, name='crud'),

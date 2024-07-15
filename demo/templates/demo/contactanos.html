@@ -1,135 +1,14 @@
-
+{% extends "demo/base.html" %}
 {% load static %}
-<!DOCTYPE HTML>
-
-<html>
-	<head>
-		<title>LIVE music</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href={% static "/css/main.css" %} />
-	</head>
-    
-	<body class="is-preload">
-		<div id="page-wrapper">
-            <body class="is-preload">
-                <div id="page-wrapper">
-   
-			<!-- Header -->
-				<div id="header">
-					<img src="{% static 'img/logoempresa.png' %}" alt="" style="height: 200px;">
-					
-
-					<!-- Logo -->
-				
-						<h1><a href="index.html" id="logo">LIVE MUSIC <em>Tenemos la música que buscas</em></a></h1>
-
-				<!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li {%if clase == 'inicio'%}
-                            class="current" {%endif%}><a href="/">Inicio</a></li>
-                            <li>
-                                <a href="#">Productos</a>
-                                <ul>
-                                    <li><a href="vinilo">Vinilos</a></li>
-                                    <li><a href="cd">CD</a></li>
-                                    <li><a href="cassette">Cassette</a></li>
-                                    <li><a href="#">Otro</a></li>
-                                </ul>
-                            </li>
-                        <li {%if clase == 'contactanos'%}
-                            class="current" {%endif%}><a href="contactanos">Contactanos</a></li>
-
-                            <li>
-                                {% if user.is_authenticated %}
-                                
-                                <a href="#">{{user.username}}</a>
-                                <ul>
-                                    <li class="nav-item">
-                                    <a href="{% url 'perfil'%}">Mi Perfil</a>
-                                </li>
-                                    <form id="logoutForm" action="accounts/logout/" method="post" class="navbar-right">
-                                        {% csrf_token %}
-                                        <li ><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
-                                        </ul>
-                                    </form>
-
-                                
-                                {% else %}
-                                <li class="nav-item">
-                                    <a href="{% url 'login'%}">Login</a>
-                                  </li>
-                                {% endif %}
-                            </li>
-                            <li {%if clase == 'galeria'%}
-                            class="current" {%endif%}><a href="{% url 'galeria'%}">Galeria</a></li>
-                            {% if user.is_authenticated %}
-
-                            {% else %}
-                            <li {%if clase == 'registro'%}
-                            class="current" {%endif%}><a href="{% url 'registro'%}">Registro</a></li>
-                            {% endif %}
-                             {% comment %} <li><a href="two-sidebar.html">Two Sidebar</a></li>
-                            <li><a href="no-sidebar.html">No Sidebar</a></li>  {% endcomment %}					<li {%if clase == 'comprar'%}
-                            class="current" {%endif%}><a href="comprar"><img src="{% static 'img/carrito.jpeg' %}" id="img-carrito" alt="" style="align-content: center;" width="25" height="25"></a>								
-                            <ul>
-                                <li>
-                                    <a href="#">Mi carrito</a>
-                                    <input type="checkbox" id="menu">
-                                    <div>
-                                        <ul>
-                                            <li class="submenu">
-                                                <div id="carrito">
-                                                    <table id="lista-carrito">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Imagen</th>
-                                                                <th>Nombre</th>
-                                                                <th>Precio</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody></tbody>
-                                                    </table>
-                                                    <a href="#" id="vaciar-carrito" class="btn-3">Vaciar Carrito</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="productos">Productos</a>
-                                    <ul>
-                                        <li><a href="#">Vinilos</a></li>
-                                        <li><a href="#">CD</a></li>
-                                        <li><a href="#">Cassette</a></li>
-                                        <li><a href="#">Otro</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
-
-			</div>
-                         
-        
-  
+{%block content %}
         
     <style>
         
-    .footer{
-    padding: 50px 0;
-    background-color: #000000;
-    color: white;
+    .button{
+margin:center;
 }
 
-.footer-content{
-    display: flex;
-    justify-content: space-between;
-}
+
         :root {
             --colorTextos: #49454567;
         }
@@ -146,7 +25,7 @@
     
         
         form{
-            background: #fff;
+            background: #242323;
             padding: 40px 0;
             box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
             border-radius: 10px;
@@ -222,7 +101,7 @@
             width: 200px;
             text-align: center;
             margin: auto;
-            color: rgb(32, 13, 200);
+            color: rgb(48, 170, 235);
             font-size: 25px;
             padding-top: 20px;
         }
@@ -230,7 +109,7 @@
             width: 200px;
             text-align: center;
             margin: auto;
-            color: rgb(215, 127, 26);
+            color: rgb(48, 170, 235);
             font-size: 25px;
             padding-top: 20px;
         }
@@ -254,23 +133,21 @@
             height: 50px;
 
         }
-        
+        .container1 h1{
+            color: white;
+        }
+        .container1 p{
+            color: white;
+        }
     </style>
-
-					<!-- Banner -->
-                    <section id="banner">
-                        <header>
-                            <h2>Bienvenidos a LIVE music</h2>
-                            <p>¿Estás buscando trabajo? Escribenos y te contactaremos a la brevedad</p>
-                        </header>
-                    </section>
-
+<br>
     <header class="container1">
         <div class="container1-content container">
             <div class="container1-txt">
 
                 <form action="" method="POST" id="form">
                     <div class="form">
+                        
                         <h1 style="padding: 4%; font-size: 30px; text-align: center;" >¿QUIERES TRABAJAR CON LIVE-MUSIC?</h1>
                         <p style="text-align: center; font-size: 25px;"> Ingresa tus datos aquí y nos comunicaremos contigo</p>
                     </div>    
@@ -309,6 +186,7 @@
                 <h1 style="padding: 4%;" > </h1>
                 <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Por favor, escribe tu mensaje." required></textarea>
                 <!-- esto es para java en el boton-->  
+                <br>
                 <ul class="actions">
                     <p id="demo"></p>
                     <button class="button"type="submit" onclick='document.getElementById("demo"), alert("Envío exitoso!")= ""'>ENVIAR</a></button>
@@ -318,19 +196,4 @@
     </header>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-
-
-    <script src="static/js/jquery.min.js"></script>
-    <script src="static/js/jquery.dropotron.min.js"></script>
-    <script src="static/js/browser.min.js"></script>
-    <script src="static/js/breakpoints.min.js"></script>
-    <script src="static/js/util.js"></script>
-    <script src="static/js/main.js"></script>
-    <script src="static/js/empresa.js"></script>
-    <script src="static/js/script.js"></script>
-    
-</body>
-</html>
+	{% endblock %}

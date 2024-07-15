@@ -9,8 +9,7 @@
           
         </div>
         {%endif%}
-        <h1>Login</h1><br>
-        ¿No tienes cuenta?<br>
+
         <a href="{% url 'registro'%}">Registrate</a>
         <form  method="POST">
             {% csrf_token %}

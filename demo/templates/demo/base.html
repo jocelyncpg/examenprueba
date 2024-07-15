@@ -1,10 +1,5 @@
 {% load static %}
 <!DOCTYPE HTML>
-<!--
-	Arcana by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>Live MUSIC</title>
@@ -15,12 +10,15 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA=="
 		 crossorigin="anonymous" referrerpolicy="no-referrer" />
 	</head>
-	<body class="is-preload">
+	
+		<body class="homepage is-preload">
+			
 		<style>
 			body{
 				background-color: black;
 				
 			}
+
 		</style>
 		<div id="page-wrapper">
 
@@ -122,9 +120,29 @@
 
 						</ul>
 					</nav>
-
 			</div>
 		</div>
+
+  
+<br>
+        <div class="audio-container">
+		  <audio id="audioPlayer" controls style="margin-left: 35%;">
+			<source id="audioSource" src="{% static 'audio/TOOL.mp3' %}" type="audio/mpeg">
+			Tu navegador no soporta la reproducción de audio.
+		  </audio>
+	  
+		  
+		</div>
+		<button style="margin-left: 42%;" onclick="playRandomSong()">Aleatoria</button>
+		<!-- Lista de canciones -->
+		<ul id="playlist" style="display: none;">
+		  <li data-src="{% static 'audio/mac.mp3' %}">Canción 2</li>
+		  <li data-src="{% static 'audio/bowie.mp3' %}">Canción 3</li>
+		  <li data-src="{% static 'audio/metallica.mp3' %}">Canción 3</li>
+
+		  <!-- Agrega más canciones según sea necesario -->
+		</ul>
+<br><br><br><br><br>
                 {% block content %}{% endblock %}
 
 
@@ -157,27 +175,7 @@
 									<li><a href="#">Rutrum amet varius</a></li>
 								</ul>
 							</section>
-							<section class="col-6 col-12-narrower">
-								<h3>Get In Touch</h3>
-								<form>
-									<div class="row gtr-50">
-										<div class="col-6 col-12-mobilep">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-										<div class="col-6 col-12-mobilep">
-											<input type="email" name="email" id="email" placeholder="Email" />
-										</div>
-										<div class="col-12">
-											<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
-										</div>
-										<div class="col-12">
-											<ul class="actions">
-												<li><input type="submit" class="button alt" value="Send Message" /></li>
-											</ul>
-										</div>
-									</div>
-								</form>
-							</section>
+							
 						</div>
 					</div>
 
@@ -193,7 +191,7 @@
 					<!-- Copyright -->
 						<div class="copyright">
 							<ul class="menu">
-								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">Live-MUSIC</a></li>
 							</ul>
 						</div>
 
@@ -208,6 +206,7 @@
 			<script src={% static "js/breakpoints.min.js"%}></script>
 			<script src={% static "js/util.js"%}></script>
 			<script src={% static "js/main.js"%}></script>
+			<script src={% static "js/audio.js"%}></script>
 
 	</body>
 </html>

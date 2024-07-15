@@ -1,18 +1,44 @@
 {% extends "demo/base.html" %}
 
 {%block content %}
-
+<style>
+    h1{
+        color: white;
+        font-size: 35px;
+        text-align: center;
+    }
+</style>
             {% if user.is_staff %}
-				Es de la empresa
+				<h1>Bienvenido Administrador</h1>
                 	<ol>
                 {%for e in users%}
                 
                     <li> {{e}}</li>
+                    <header class="container1">
+                        <div class="container1-content container">
+                            <div class="container1-txt">
                 
+                                <form action="" method="POST" id="form">
+                                    <div class="form">
+                                        <p style="text-align: center; font-size: 25px;"> Estos son los postulantes.</p>
+                                    </div>    
+                                </form class="was-validated" style="padding: 1%;" >
+                            </div>
+                
+                            <!-- esto es para java en el boton-->  
+                            {% csrf_token %}
+                            <ul class="actions">
+                                
+                                <a href='crud'> <br>
+                                    <button class="btn btn-info">Postulantes</button>
+                                </a>
+                            </ul>    
+                        </div>
+                    </header>
                		
                 {% endfor %}	</ol>						
             {% else %}
-                Este usuario no trabaja aca
+            <h1> Este usuario no trabaja aca </h1>
             {% endif %}
 
 

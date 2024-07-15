@@ -1,12 +1,6 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
 
-/*
-	Arcana by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -1951,6 +1945,94 @@ input, select, textarea {
 						}
 
 		}
+/* Tables */
+
+table {
+	width: 100%;
+}
+
+	table tr {
+		border-top: solid 1px #dddddd;
+	}
+
+		table tr:first-child {
+			border-top: 0;
+		}
+
+	table td {
+		padding: 0.5em 1em 0.5em 1em;
+	}
+
+	table th {
+		text-align: left;
+		padding: 0.5em 1em 0.5em 1em;
+		font-weight: 700;
+		margin: 0 0 1em 0;
+	}
+
+	table thead {
+		border-bottom: solid 2px #dddddd;
+	}
+
+	/* Page Wrapper */
+
+	#page-wrapper > section {
+		margin-bottom: 0;
+	}
+
+/* Header */
+
+	#header {
+		position: relative;
+		background: #ffffff;
+		border-bottom: solid 1px #ccc;
+		padding: 5em 0 4em 0;
+		text-align: center;
+	}
+
+		#header h1 {
+			color: #252122;
+			font-weight: 900;
+			font-size: 2.5em;
+			letter-spacing: -0.035em;
+			line-height: 1;
+		}
+
+
+		/* Banner */
+
+	#banner {
+		background: #fd6f6f url("../../images/pic01.jpg");
+		background-position: center center;
+		background-size: auto 100%;
+		background-repeat: no-repeat;
+		text-align: center;
+		position: relative;
+		padding: 8em 0;
+		margin: 4em 0 0 0;
+	}
+
+		#banner header {
+			background-color: rgba(34, 30, 31, 0.98);
+			display: inline-block;
+			padding: 2.5em 5em;
+			border-radius: 5px;
+		}
+
+			#banner header h2 {
+				color: #fff;
+				font-weight: 700;
+				font-size: 2.5em;
+				margin: 0 0 0.65em 0;
+			}
+
+			#banner header p {
+				color: #4a4545;
+				padding: 0;
+				font-style: normal;
+				margin: 0;
+				font-size: 1.5em;
+			}
 
 /* Section/Article */
 

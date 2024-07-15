@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from .models import Album, Musician, Postulante, Genero 
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def index(request):
@@ -20,19 +22,36 @@ def perfil(request):
     context={"clase": "perfil"}
     return render(request, 'demo/perfil.html', context)
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+
 def registro(request):
-    if request.method != "POST":
-        context={"clase": "registro"}
-        return render(request, 'demo/registro.html', context)
-    else:
-        nombre = request.POST["nombre"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        user = User.objects.create_user(nombre, email, password)
-        user.save()
-        context={"clase": "registro", "mensaje":"Los datos fueron registrados"}
-        return render(request, 'demo/registro.html', context)
+    if request.method == "POST":
+        nombre = request.POST.get("nombre")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        
+        # Validación básica (puedes agregar más validaciones según tus requisitos)
+        if not nombre or not email or not password:
+            context = {"clase": "registro", "error": "Por favor completa todos los campos."}
+            return render(request, 'demo/registro.html', context)
+        
+        try:
+            # Crear usuario con contraseña encriptada
+            user = User.objects.create_user(username=nombre, email=email, password=password)
+            context = {"clase": "registro", "mensaje": "Los datos fueron registrados"}
+            return render(request, 'demo/registro.html', context)
+        
+        except Exception as e:
+            # Capturar errores específicos, como IntegrityError si el nombre de usuario ya existe
+            context = {"clase": "registro", "error": f"No se pudo registrar: {str(e)}"}
+            return render(request, 'demo/registro.html', context)
     
+    else:
+        context = {"clase": "registro"}
+        return render(request, 'demo/registro.html', context)
+
 
 def get_current_users():
     active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
@@ -86,10 +105,13 @@ def pagar(request):
     return render(request, 'demo/pagar.html', context)
 
 
-def realizarpago(request):
+def pagoexitoso(request):
     context={}
-    return render(request, 'demo/realizarpago.html', context)
+    return render(request, 'demo/pagoexitoso.html', context)
 
+def saldoinsuficiente(request):
+    context={}
+    return render(request, 'demo/saldoinsuficiente.html', context)
 # ingresar
 
 def listadoSQL(request):
@@ -99,11 +121,23 @@ def listadoSQL(request):
     context={"demo": demo}
     return render(request, 'demo/listadoSQL.html', context)
 
-def crud(request):
-    demo = Postulante.objects.all()
-    context={"demo": demo}
-    return render(request, 'demo/alumnos_list.html', context)
+#def crud(request):
+    #demo = Postulante.objects.all()
+    #context={"demo": demo}
+    #return render(request, 'demo/alumnos_list.html', context)
 
+def crud(request):
+    postulantes = Postulante.objects.all()  # Obtén todos los postulantes
+    
+    # Paginar los datos
+    paginator = Paginator(postulantes, 5)  # Mostrar 5 postulantes por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'demo': page_obj,  # Pasar el objeto de paginación a la plantilla
+    }
+    return render(request, 'demo/alumnos_list.html', context)
 
 def alumnosAdd(request):
     if request.method != "POST":

@@ -1,91 +1,195 @@
 {% extends "demo/base.html" %}
 
-{%block content %}
-
+{% block content %}
 <style>
-  body{
-    background-color: rgb(37, 33, 33);
+  body {
+    background-color: black;
   }
-  td{
-    color:white;
+
+  td {
+    color: white;
     font-size: 18px;
   }
-  button{
+
+  button {
     font-size: 15px;
   }
-  @media screen and (max-width: 736px) {
-  .container1{ width: calc(100% - 80px);}
-}
-</style>
-					<!-- Banner -->
-          <section id="banner">
-            <header>
-                <h2>Bienvenidos a LIVE music</h2>
-                <p> Postulantes</p>
-            </header>
-        </section>
 
-     <div id="idMensaje">
-          {% if mensaje %}
-          {{mensaje}}
-          {%endif%}
+  @media screen and (max-width: 736px) {
+    .container1 {
+      width: calc(100% - 80px);
+    }
+  }
+
+  /* Estilos para la tabla */
+  .responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .responsive-table th,
+  .responsive-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .responsive-table th {
+    background-color: #f2f2f2;
+  }
+
+  .responsive-table tbody tr:nth-child(even) {
+    background-color: black;
+  }
+
+  /* Estilos para los botones */
+  .btn-container {
+    margin-top: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+
+  /* Estilos para el campo de búsqueda */
+  #buscarInput {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  }
+</style>
+
+<div id="idMensaje">
+  {% if mensaje %}
+  {{ mensaje }}
+  {% endif %}
+</div>
+
+<header class="container1">
+  <div class="container1-content container">
+    <div class="container1-txt">
+      <!-- Campo de búsqueda -->
+      <input type="text" id="buscarInput" placeholder="Buscar...">
+
+      <!-- Tabla de postulantes -->
+      <table id="tablaPostulantes" class="responsive-table">
+        <thead>
+          <tr>
+            <th>RUN</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Iteración sobre los datos de postulantes -->
+          {% for postulante in demo %}
+          <tr>
+            <td>{{ postulante.rut }}</td>
+            <td>{{ postulante.nombre }} {{ postulante.apellido_paterno }} {{ postulante.apellido_materno }}</td>
+            <td>{{ postulante.telefono }}</td>
+            <td>
+              <!-- Botones de acción para eliminar y modificar -->
+              <a href="{% url 'alumnos_del' pk=postulante.rut %}">
+                <button class="btn btn-danger">Eliminar</button>
+              </a>
+              <a href="{% url 'alumnos_findEdit' pk=postulante.rut %}">
+                <button class="btn btn-success">Modificar</button>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- Botones para navegación -->
+      <div class="btn-container">
+        {% if demo.has_previous %}
+        <a href="?page={{ demo.previous_page_number }}" class="btn btn-info">Volver</a>
+        {% endif %}
+        {% if demo.has_next %}
+        <a href="?page={{ demo.next_page_number }}" class="btn btn-info">Siguiente</a>
+        {% endif %}
       </div>
 
-      <header class="container1">
-        <div class="container1-content container">
-            <div class="container1-txt">
-                  <table>
-                        {%if demo %}
-                      <thead>
-                        <tr>
+      <!-- Contenedor de botones adicionales -->
+      <div class="btn-container">
+        <a href="{% url 'alumnosAdd' %}" class="btn btn-info">Agregar</a>
+        <a href="{% url 'index' %}" class="btn btn-info">Inicio</a>
+        <a href="{% url 'listadoSQL' %}" class="btn btn-info">Lista</a>
+      </div>
+    </div>
+  </div>
+</header>
 
-                          <th scope="col">RUN</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Telefono</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          {% for postulante in demo %}
-                          <tr>
-                        
-                              <td>{{postulante.rut}}</td>
-                              <td>{{postulante.nombre}} {{postulante.apellido_paterno}} {{postulante.apellido_materno}}</td>
-                              <td>{{postulante.telefono}}</td>
-                              <td> <a href="{% url 'alumnos_del' pk=postulante.rut %}" ><button class="btn btn-danger">Eliminar</button></a>   
-                                </a></td>                
-                              <td><a href="{% url 'alumnos_findEdit' pk=postulante.rut %}"><button class="btn btn-success">Modificar</button></a></td>  
-                            
-                            </tr>
-                          
-                          {% endfor %}
-                      
-                      {% endif %}    
-                      </tbody>
-                    </table>
-                    <a href="{% url 'alumnosAdd'%}">
-                      <button class="btn btn-info">Agregar</button>
-                      </a>
-                    <a href="{% url 'index'%}">
-                      <button class="btn btn-info">Inicio</button>
-                      </a>
-                      <a href="{% url 'listadoSQL'%}">
-                        <button class="btn btn-info">Lista</button>
-                        </a> 
-                    </div>    
-                  </div>   
-                </header>
+<!-- Script para la búsqueda -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const buscarInput = document.getElementById('buscarInput');
+    const tablaPostulantes = document.getElementById('tablaPostulantes');
+    const rows = tablaPostulantes.getElementsByTagName('tr');
 
+    buscarInput.addEventListener('keyup', function () {
+      const filter = buscarInput.value.toUpperCase();
 
-                   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      for (let i = 0; i < rows.length; i++) {
+        let nombre = rows[i].getElementsByTagName('td')[1];
 
-  <script>
-    $(document).ready(function(){
-      $("#idMensaje").delay(2000).fadeOut("slow");
-    })
-  </script>
+        if (nombre) {
+          let textValue = nombre.textContent || nombre.innerText;
+          if (textValue.toUpperCase().indexOf(filter) > -1) {
+            rows[i].style.display = '';
+          } else {
+            rows[i].style.display = 'none';
+          }
+        }
+      }
+    });
+  });
+</script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
+  $(document).ready(function () {
+    $("#idMensaje").delay(2000).fadeOut("slow");
+  })
+</script>
 
-
-  {%endblock%}
+{% endblock %}

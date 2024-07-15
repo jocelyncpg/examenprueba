@@ -1,78 +1,6 @@
+{% extends "demo/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar - LIVE music</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
-    
-</head>
-<body >
-    <header id="header">
-        <img src="{% static 'images/logoempresa2.png' %}" alt="" style="height: 200px;">
-        <h1><a href="/" id="logo">LIVE MUSIC <em>Tenemos la música que buscas</em></a></h1>
-
-				<!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li {%if clase == 'inicio'%}
-                            class="current" {%endif%}><a href="/">Inicio</a></li>
-                            <li>
-                                <a href="#">Productos</a>
-                                <ul>
-                                    <li><a href="vinilo">Vinilos</a></li>
-                                    <li><a href="cd">CD</a></li>
-                                    <li><a href="cassette">Cassette</a></li>
-                                    <li><a href="#">Otro</a></li>
-                                </ul>
-                            </li>
-                        <li {%if clase == 'contactanos'%}
-                            class="current" {%endif%}><a href="contactanos">Contactanos</a></li>
-
-                            <li>
-                                {% if user.is_authenticated %}
-                                
-                                <a href="#">{{user.username}}</a>
-                                <ul>
-                                    <li class="nav-item">
-                                    <a href="{% url 'perfil'%}">Mi Perfil</a>
-                                </li>
-                                    <form id="logoutForm" action="accounts/logout/" method="post" class="navbar-right">
-                                        {% csrf_token %}
-                                        <li ><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
-                                        </ul>
-                                    </form>
-
-                                
-                                {% else %}
-                                <li class="nav-item">
-                                    <a href="{% url 'login'%}">Login</a>
-                                  </li>
-                                {% endif %}
-                            </li>
-                            <li {%if clase == 'galeria'%}
-                            class="current" {%endif%}><a href="{% url 'galeria'%}">Galeria</a></li>
-                            {% if user.is_authenticated %}
-
-                            {% else %}
-                            <li {%if clase == 'registro'%}
-                            class="current" {%endif%}><a href="{% url 'registro'%}">Registro</a></li>
-                            {% endif %}
-                             {% comment %} <li><a href="two-sidebar.html">Two Sidebar</a></li>
-                            <li><a href="no-sidebar.html">No Sidebar</a></li>  {% endcomment %}				
-
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
-
-        </div>
-
-
-    </header>
+{%block content %}
 <style>
 
     .carrito-row {
@@ -96,7 +24,7 @@
     }
     
     .btn-info {
-        background-color: red;
+        background-color:  #27a1c2;
         color: white;
         border: none;
         margin-left: 50%;
@@ -107,7 +35,7 @@
     }
     
     .btn-info:hover {
-        background-color: red;
+        background-color:  #27a1c2;
     }
     
     @media (max-width: 768px) {
@@ -119,15 +47,9 @@
             width: 100%;
         }
     }
-    
-    
+
 </style>
-    <section id="banner">
-        <header>
-            <h2>Nuestros Productos</h2>
-            <p>Disponibles en todos los formatos.</p>
-        </header>
-    </section>
+
 
     <div class="carrito">
         <div class="carrito-items">
@@ -272,52 +194,14 @@
 
     <br><br>
 
-<!-- Footer -->
-<footer id="footer-inicio" class="footer">
 
-    <div class="footer-content container">
-        <div class="link">
-            <h3>Contactos</h3>
-            <ul>
-                <li><a href="#">+56 9 5451 2548</a></li>
-                <li><a href="#">+56 2 5478 5545</a></li>                    
-            </ul>
-        </div>
-
-        <div class="link">
-            <h3>Correo</h3>
-            <ul>
-                <li><a href="#">livemusic@gmail.cl</a></li>
-            </ul>
-        </div>
-
-        <div class="link">
-            <h3>Ubicación</h3>
-            <ul>
-                <li><a href="#">Dr. Manuel Barros Borgoño 71 OF 1306, 
-                                <br>7500593 Providencia, Región Metropolitana</a></li>
-        </div>
-    </div>
-
-</footer>
         
 <script src="static/js/load.js"></script>
+<script src="static/js/script.js"></script>
+<script src="static/js/boton.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    <style>
-			
-        .footer{
-            padding: 50px 0;
-            background-color: #000000;
-            color: white;
-        }
-        
-        .footer-content{
-            display: flex;
-            justify-content: space-between;
-        }
-    
-    </style>
  <style>
             .info-txt{
                 width: 50%;
@@ -333,10 +217,17 @@
                 display: grid;
                 grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
                 gap: 20px;
+                background-color: #181819;
+                border-radius: 15px;
+                
             }
-            
+
+            .box p{
+                color: white;
+            }
+
             .box{
-                border-top: 2px solid #fb5959;
+                border-top: 2px solid #101111;
                 padding: 20px;
                 border-radius: 15px;
                 z-index: 1000;
@@ -357,7 +248,7 @@
             
             .product-txt h3{
                 font-size: 20px;
-                color: #1d1d1b;
+                color: white;
                 margin-bottom: 10px;
             }
             
@@ -367,11 +258,11 @@
             
             .precio{
                 font-size: 15px;
-                color: #d46419;    
+                color: #27a1c2;    
             }
             
             .btn-2{
-                background-color: #fb5959;
+                background-color: #27a1c2;
                 margin-top: 50px;
                 display: inline-block;
                 padding: 13px 35px;
@@ -379,27 +270,27 @@
                 color: #ffffff;
                 font-size: 16px;
                 cursor: pointer;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 5px 10px rgba(106, 104, 104, 0.2);
             }
             
             .btn-2:hover{
-                background-color: #fb5959;
+                background-color: #27a1c2;
             }
             
             .btn-3{
                 display: inline-block;
                 padding: 5px 25px;
-                background-color: #fb5959;
+                background-color: #27a1c2;
                 color: #ffffff;
                 border-radius: 10px;
             }
             
             .btn-3:hover{
-                background-color: #fb5959;
+                background-color: #27a1c2;
             }
             
             .btn-primary{
-               background-color: #fb5959;  
+               background-color: #27a1c2;  
             }
             
             #menu{
@@ -433,7 +324,7 @@
                 background-color: #77777797;
                 padding: 20px;
                 min-width: 400px;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0 20px rgba(37, 36, 36, 0.2);
             }
             
             table{
@@ -445,7 +336,7 @@
             }
             
             .borrar{
-                background-color: #fb5959;
+                background-color: #27a1c2;
                 border-radius: 50%;
                 padding: 5px 10px;
                 text-decoration: none;
@@ -492,9 +383,8 @@
             }
             
             .header-txt span{
-                color: #fb5959;
+                color: #27a1c2;
             }
         </style>
 
-</body>
-</html>
+        {%endblock%}

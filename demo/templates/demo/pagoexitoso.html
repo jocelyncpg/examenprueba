@@ -1,0 +1,25 @@
+{% extends "demo/base.html" %}
+{% load static %}
+{%block content %}
+<style>
+    .container1 h1{
+        color: white;
+        font-size: 45px;
+    }
+    .container1 p{
+        color: white;
+        font-size: 30px;
+    }
+</style>
+
+    <header class="container1">
+        <div class="container1-content container">
+            <div class="container1-txt">
+                <h1>Pago Exitoso</h1>
+                <br><br>
+                <p>¡Gracias por tu compra!</p>
+                <p>El pago se ha realizado correctamente.</p>
+            </div>
+        </div>
+    </header>
+	{% endblock %}

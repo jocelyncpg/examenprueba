@@ -1,65 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <title>Listado de Musica</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="migrations/static/css/style.css">
-    
-</head>
-<body>
-    <!-- Menu superior -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'index' %}"> 
-      </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-            <img src="{% static 'images/logoempresa.png' %}" alt="" style="height: 85px;" >
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'crud' %}">Editor Musica <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'listadoSQL' %}">Listado Musica <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+{% extends "demo/base.html" %}
 
-<h1>Listado de Albums</h1><br>
+{% block content %}
 
-    <table class="table table-striped table-primary">
+<style>
+  body {
+    background-color: black;
+  }
+
+  td{
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+  }
+  th {
+    color: black;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .responsive-table th, .responsive-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .responsive-table th {
+    background-color: #f2f2f2;
+  }
+
+  .responsive-table tbody tr:nth-child(even) {
+    background-color: #212529;
+  }
+
+  .btn-container {
+    margin-top: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+
+  .btn-info:hover {
+    background-color: #117a8b;
+    border-color: #10707f;
+  }
+</style>
+
+<section>
+  <div class="container">
+    <table class="table table-striped table-dark responsive-table">
+      {% if demo %}
       <thead>
-        <tr>          
-          <th scope="col">Artista</th>
-          <th scope="col">Nombre album</th>
-          <th scope="col">Fecha Estreno</th>
-          <th scope="col">Numero Estrellas</th>
+        <tr>
+          <th scope="col">RUN</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Fecha Nacimiento</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Email</th>
+          <th scope="col">Género</th>
         </tr>
       </thead>
-      <tbody>
-        {% for demo in Album %}
-        
-        <tr>
-          <td>{{demo.artist}}</td>
-          <td>{{demo.name}}</td>
-          <td>{{demo.release_date}}</td>
-          <td>{{demo.num_stars}}</td>
-        </tr>
 
+      <tbody>
+        {% for postulante in demo %}
+        <tr>
+          <td>{{ postulante.rut }}</td>
+          <td>{{ postulante.nombre }} {{ postulante.apellido_paterno }} {{ postulante.apellido_materno }}</td>
+          <td>{{ postulante.telefono }}</td>
+          <td>{{ postulante.fecha_nacimiento }}</td>
+          <td>{{ postulante.direccion }}</td>
+          <td>{{ postulante.email }}</td>
+          <td>{{ postulante.id_genero.genero }}</td>
+        </tr>
         {% endfor %}
       </tbody>
+      {% endif %}
     </table>
+    <a href="{% url 'crud' %}" class="btn btn-info">Volver a Postulantes</a>
+  </div>
+</section>
 
-</body>
-</html>
+{% endblock %}
