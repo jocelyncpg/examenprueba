@@ -82,11 +82,13 @@ def comprar(request):
     context={}
     return render(request, 'demo/comprar.html', context)
 
+def trabaja(request):
+    context={}
+    return render(request, 'demo/trabaja.html', context)
+
 # ingresar
 
-def contactanos(request):
-    context={}
-    return render(request, 'demo/contactanos.html', context)
+
 
 def cassette(request):
     context={}

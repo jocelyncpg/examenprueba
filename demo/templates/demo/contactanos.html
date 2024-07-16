@@ -1,280 +1,183 @@
 {% extends "demo/base.html" %}
 {% load static %}
-{%block content %}
-        
-    <style>
-        
-            {% comment %} button1{
-        margin:center;
-        }
 
-        button2{
-            center;
-            } {% endcomment %}
+{% block content %}
+<style>
+    :root {
+        --colorTextos: #49454567;
+    }
 
+    *,
+    ::before,
+    ::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        :root {
-            --colorTextos: #49454567;
-        }
-        
-        
-        *,
-        ::before,
-        ::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-    
-        
-        form{
-            background: #242323;
-            padding: 40px 0;
-            box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-        }
-        
-        .form{
-            width: 100%;
-            margin: auto;
-        }
-        
-        form .grupo{
-            position: relative;
-            margin: 45px ;
-        }
-        
-        input{
-            background: none;
-            color: #c6c6c6;
-            font-size: 18px;
-            padding: 10px 10px 10px 5px;
-            display: block;
-            width: 100%;
-            border: none;
-            border-bottom: 1px solid var(--colorTextos);
-        }
-               
-        
-        input:focus{ 
-            outline: none;
-            color: #5e5d5d;
-        }
-        
-        label{
-            color: var(--colorTextos);
-            font-size: 16px;
-            position: absolute;
-            left: 5px;
-            top: 10px;
-            transition: 0.5s ease all;
-            pointer-events: none;
-        }
-        
-        input:focus~label,
-        input:valid~label{
-            top: -14px;
-            font-size: 12px;
-            color: black;
-        }
+    form {
+        background: rgb(33, 32, 32);
+        padding: 40px 0;
+        box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        color: black;
+        position: relative; /* Para posicionar el mensaje de advertencia */
+    }
 
-        input[type="text"] {
-            background-color: white; /* Fondo blanco */
-            color: black; /* Color del texto negro */
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 22px;
-        }
-        
-        input[type="email"] {
-            background-color: white; /* Fondo blanco */
-            color: black; /* Color del texto negro */
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 22px;
-        }
+    .form {
+        width: 100%;
+        margin: auto;
+    }
 
-        textarea{
-            background-color: white; /* Fondo blanco */
-            color: black; /* Color del texto negro */
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 22px;
-        }
-        
-        .barra{
-            position: relative;
-            display: block;
-            width: 100%;
-        }
-        
-        .barra::before{
-            content: "";
-            height: 2px;
-            width: 0%;
-            bottom: 0;
-            position: absolute;
-            background: linear-gradient(to right, #dad315, #eeb925);
-            transition: 0.3s ease width;
-            left: 0;
-        }
-        
-        input:focus~.barra::before{
-            width: 100%;
-        }
-        
-        .warnings{
-            width: 200px;
-            text-align: center;
-            margin: auto;
-            color: rgb(48, 170, 235);
-            font-size: 25px;
-            padding-top: 20px;
-        }
-        .alerta{
-            width: 200px;
-            text-align: center;
-            margin: auto;
-            color: rgb(48, 170, 235);
-            font-size: 25px;
-            padding-top: 20px;
-        }
+    form .grupo {
+        position: relative;
+        margin: 45px;
+    }
 
+    input {
+        background: none;
+        color: white; /* Texto blanco para los inputs */
+        font-size: 18px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--colorTextos);
+    }
 
+    input:focus {
+        outline: none;
+        color: #5e5d5d;
+    }
 
+    label {
+        color: var(--colorTextos);
+        font-size: 16px;
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        transition: 0.5s ease all;
+        pointer-events: none;
+    }
+
+    input:focus~label,
+    input:valid~label {
+        top: -14px;
+        font-size: 12px;
+        color: white; /* Color blanco para el label cuando el input está enfocado o tiene valor */
+    }
+
+    .barra {
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+    .barra::before {
+        content: "";
+        height: 2px;
+        width: 0%;
+        bottom: 0;
+        position: absolute;
+        background: linear-gradient(to right, #41aeed, #41aeed);
+        transition: 0.3s ease width;
+        left: 0;
+    }
+
+    input:focus~.barra::before {
+        width: 100%;
+    }
+
+    .warnings {
+        position: absolute;
+        bottom: -40px; /* Posición debajo del formulario */
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+    }
+
+    .actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .actions button {
+        border: none;
+        cursor: pointer;
+        background-color: #41aeed;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .actions button:hover {
+        background-color: #368acc;
+    }
+
+    @media screen and (max-width: 991px) {
         form {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-        
-        .actions {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        
-        .actions li {
-            margin: 0;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .btn {
-        padding: 8px 16px;
-        font-size: 14px;
     }
-}
 
-@media (max-width: 480px) {
-    .btn {
-        padding: 6px 12px;
-        font-size: 12px;
+    .form-control {
+        margin-left: 4%;
+        padding: 4%;
+        width: 92%;
+        height: 50px;
     }
-}
-        button[class="btn btn-info"] {
-                margin: 0 auto; /* Esto centrará horizontalmente el botón */
-                border: none;
-                cursor: pointer;
-            }
+    .container1 h2{
+        color: white;
+    }
+</style>
 
-        button[class="button_1"] {
-                margin: 0 auto; /* Esto centrará horizontalmente el botón */
-                border: none;
-                cursor: pointer;
-            }            
-
-        @media screen and (max-width:991px){
-            form{
-                width: 100%;
-            }
-        }
-        .form-control{ 
-            margin-left: 4%;
-            padding: 4%;       
-            width: 92%;
-            height: 50px;
-
-        }
-        .container1 h1{
-            color: white;
-        }
-        .container1 p{
-            color: white;
-        }
-    </style>
-<br>
-    <!-- ¿QUIERES TRABAJAR CON LIVE-MUSIC?-->
-    <header class="container1">
-        <div class="container1-content container">
-            <div class="container1-txt">
-
-                <form action="" method="POST" id="form">
-                    <div class="form">
-                        
-                        <h1 style="padding: 4%; font-size: 30px; text-align: center;" >¿QUIERES TRABAJAR CON LIVE-MUSIC?</h1>
-                        <p style="text-align: center; font-size: 25px;"> Ingresa tus datos aquí y nos comunicaremos contigo</p>
-                    
-                    </div>
-                </form class="was-validated" style="padding: 1%;" >
-                
-                                <!-- esto es para java en el boton-->  
-                                {% csrf_token %}
-                                <ul class="actions">
-                                    {% comment %} <div style="text-align: center;"> {% endcomment %}
-                                        <a href='alumnosAdd'> <br> 
-                                            <button class="btn btn-info">POSTULAR</button>
-                                        </a>
-                                    {% comment %} </div> {% endcomment %}
-                                </ul>   
-            </div>
-        </div>
-
-    </header>
-<br><br>
-    <!-- ESCRIBENOS-->  
-    <header class="container1">
-        <div class="container1-content container">
-            <div class="container1-txt">
-
-                <form action="" method="POST" id="form">
-                    <div class="form">
-                        <h1 style="padding: 4%;" >E S C R I B E N O S </h1>
-                        <div class="grupo">
-                            <input type="text" placeholder="Nombre" id="name" ><span class="barra"></span>
-                            <label for=""></label>
-                        </div>
+<header class="container1">
+    <div class="container1-content container">
+        <div class="container1-txt">
+            <form action="" method="POST" id="form">
+                <div class="form">
+                    <h2 style="padding: 4%;">C O N T A C T A N O S </h2>
                     <div class="grupo">
-                        <i class='bx bx-envelope' ></i>
-                        <input type="email" placeholder="Correo electronico" name="" id="email" ><span class="barra"></span>
-                        <label for=""></label>
+                        <input type="text" placeholder="" id="name" required><span class="barra"></span>
+                        <label for="name">Nombre</label>
                     </div>
-            <form class="was-validated" style="padding: 1%;" >
-                <div class="mb-3">
-                    <h1 style="padding: 4%;" > </h1>
-                    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Por favor, escribe tu mensaje." required></textarea>
-                    <!-- esto es para java en el boton-->  
-                    <br>
-                    <ul class="actions">
-                        <p id="demo"></p>
-                            <button class="button_1" type="submit" onclick='document.getElementById("demo"), alert("Envío exitoso!")= ""'>ENVIAR</button>                    
-                    </ul>     
+                    <div class="grupo">
+                        <input type="text" placeholder="" id="apellido" required><span class="barra"></span>
+                        <label for="apellido">Apellido</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="text" placeholder="" id="ciudad" required><span class="barra"></span>
+                        <label for="ciudad">Ciudad</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="text" placeholder="" id="telefono" required><span class="barra"></span>
+                        <label for="telefono">Telefono</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="text" placeholder="" id="local" required><span class="barra"></span>
+                        <label for="local">Alias</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="email" placeholder=" " id="email" required><span class="barra"></span>
+                        <label for="email">Correo electrónico</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="password" placeholder="" id="password" required><span class="barra"></span>
+                        <label for="password">Contraseña</label>
+                    </div>
+                    <div class="actions">
+                        <button class="button" type="submit">ENVIAR</button>
+                    </div>
+                    <p class="warnings" id="warnings"></p>
                 </div>
             </form>
-    </header>
+        </div>
+    </div>
+</header>
 
+<script src="{% static 'js/empresa.js' %}"></script>
 
-	{% endblock %}
+{% endblock %}

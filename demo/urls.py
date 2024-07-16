@@ -13,7 +13,8 @@ urlpatterns = [
     path('cd', views.cd, name='cd'),     
     path('pagar/', views.pagar, name='pagar'),
     path('pagoexitoso/', views.pagoexitoso, name='pagoexitoso'),      
-    path('saldoinsuficiente/', views.saldoinsuficiente, name='saldoinsuficiente'),      
+    path('saldoinsuficiente/', views.saldoinsuficiente, name='saldoinsuficiente'), 
+    path('trabaja/', views.trabaja, name='trabaja'),      
        # Ingresar
     path('listadoSQL', views.listadoSQL, name='listadoSQL'),
     path('crud/', views.crud, name='crud'),
