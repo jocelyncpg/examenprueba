@@ -4,9 +4,13 @@
         
     <style>
         
-    .button{
-margin:center;
-}
+            {% comment %} button1{
+        margin:center;
+        }
+
+        button2{
+            center;
+            } {% endcomment %}
 
 
         :root {
@@ -51,8 +55,7 @@ margin:center;
             border: none;
             border-bottom: 1px solid var(--colorTextos);
         }
-        
-        
+               
         
         input:focus{ 
             outline: none;
@@ -74,6 +77,33 @@ margin:center;
             top: -14px;
             font-size: 12px;
             color: black;
+        }
+
+        input[type="text"] {
+            background-color: white; /* Fondo blanco */
+            color: black; /* Color del texto negro */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 22px;
+        }
+        
+        input[type="email"] {
+            background-color: white; /* Fondo blanco */
+            color: black; /* Color del texto negro */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 22px;
+        }
+
+        textarea{
+            background-color: white; /* Fondo blanco */
+            color: black; /* Color del texto negro */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 22px;
         }
         
         .barra{
@@ -115,11 +145,23 @@ margin:center;
         }
 
 
-        .button{
+        {% comment %} button[class="button1"]{
             margin-left: 45%;
             border: none;
             cursor: pointer;
-        }
+        }  {% endcomment %}
+
+        button[class="btn btn-info"] {
+                margin: 0 auto; /* Esto centrará horizontalmente el botón */
+                border: none;
+                cursor: pointer;
+            }
+
+            button[class="btn btn-info"] {
+                margin: 0 auto; /* Esto centrará horizontalmente el botón */
+                border: none;
+                cursor: pointer;
+            }            
 
         @media screen and (max-width:991px){
             form{
@@ -159,7 +201,7 @@ margin:center;
             <ul class="actions">
                 
                 <a href='alumnosAdd'> <br>
-                    <button class="button">Postular</button>
+                    <button class="btn btn-info">Postular</button>
                 </a>
             </ul>    
         </div>
@@ -188,8 +230,11 @@ margin:center;
                 <!-- esto es para java en el boton-->  
                 <br>
                 <ul class="actions">
-                    <p id="demo"></p>
-                    <button class="button"type="submit" onclick='document.getElementById("demo"), alert("Envío exitoso!")= ""'>ENVIAR</a></button>
+                    <p id="demo"></p>                    
+                    <div style="text-align: center;">
+                        <button class="button_1" type="submit" onclick='document.getElementById("demo"), alert("Envío exitoso!")= ""'>ENVIAR</button>
+                    </div>
+                    
                 </ul>     
                 </div>
             </form>

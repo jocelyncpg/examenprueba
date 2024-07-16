@@ -1,26 +1,38 @@
 {% extends "demo/base.html" %}
 
 {%block content %}
-<style>
-    h1{
-        color: white;
-        font-size: 35px;
-        text-align: center;
-    }
-</style>
-            {% if user.is_staff %}
-				<h1>Bienvenido Administrador</h1>
+        <style>
+            h1{
+                color: white;
+                font-size: 35px;
+                text-align: center;
+            }
+
+            {% comment %} button[class="btn btn-info"] {
+                margin: 0 auto; /* Esto centrará horizontalmente el botón */
+                border: none;
+                cursor: pointer;
+            } {% endcomment %}
+            
+        </style>
+            {% if user.is_staff %}                
+				    <h1>Bienvenido usted es un:</h1>
                 	<ol>
-                {%for e in users%}
-                
-                    <li> {{e}}</li>
+                    {%for e in users%}                
+                    <center> {{e}}</center>
+                    {% endfor %}<br>
                     <header class="container1">
                         <div class="container1-content container">
                             <div class="container1-txt">
                 
                                 <form action="" method="POST" id="form">
                                     <div class="form">
-                                        <p style="text-align: center; font-size: 25px;"> Estos son los postulantes.</p>
+                                        <p style="text-align: center; font-size: 25px;"> Conosca los postulantes.</p>
+                                        <div style="text-align: center;">
+                                            <a href='crud'>
+                                                <button class="btn btn-info">Postulantes</button>
+                                            </a>
+                                        </div>
                                     </div>    
                                 </form class="was-validated" style="padding: 1%;" >
                             </div>
@@ -29,16 +41,13 @@
                             {% csrf_token %}
                             <ul class="actions">
                                 
-                                <a href='crud'> <br>
-                                    <button class="btn btn-info">Postulantes</button>
-                                </a>
+                                
                             </ul>    
                         </div>
-                    </header>
-               		
-                {% endfor %}	</ol>						
+                    </header>               		
+                {% comment %} {% endfor %}	</ol>						 {% endcomment %}
             {% else %}
-            <h1> Este usuario no trabaja aca </h1>
+                <h1> Este usuario no trabaja aca </h1>
             {% endif %}
 
 

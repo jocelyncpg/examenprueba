@@ -11,6 +11,11 @@
     font-size: 18px;
   }
 
+  th {
+    color: black;
+    font-size: 18px;
+  }
+
   button {
     font-size: 15px;
   }
@@ -91,6 +96,15 @@
     width: 100%;
     box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
   }
+
+  input[type="text"] {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Color del texto negro */
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+}
 </style>
 
 <div id="idMensaje">
@@ -103,7 +117,7 @@
   <div class="container1-content container">
     <div class="container1-txt">
       <!-- Campo de búsqueda -->
-      <input type="text" id="buscarInput" placeholder="Buscar...">
+      <input type="text" id="buscarInput" placeholder="Buscar por nombre...">
 
       <!-- Tabla de postulantes -->
       <table id="tablaPostulantes" class="responsive-table">
