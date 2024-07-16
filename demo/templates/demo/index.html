@@ -2,6 +2,220 @@
 {% load static %}
 {%block content %}
 
+<style>
+/* styles.css */
+
+/* Base Styles */
+.wrapper {
+    padding: 5em 0 3em 0;
+}
+
+.wrapper.style1 {
+    background: black;
+    background-color: black;
+    color: white;
+}
+
+.wrapper.style2 {
+    background-color: black;
+    background-image: url("images/bg02.png"), url("images/bg03.png"), url("images/bg01.png");
+    background-position: top left, bottom left, top left;
+    background-size: 100% 6em, 100% 6em, auto;
+    background-repeat: no-repeat, no-repeat, repeat;
+}
+
+/* Responsive Styles */
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 4em 0 2em 0;
+    }
+
+    .wrapper.style2 {
+        background-size: 100% 4em, 100% 4em, auto;
+    }
+}
+
+/* Small devices (phones, 576px and up) */
+@media (max-width: 576px) {
+    .wrapper {
+        padding: 3em 0 1em 0;
+    }
+
+    .wrapper.style2 {
+        background-size: 100% 3em, 100% 3em, auto;
+    }
+}
+/* Estilos para el modal */
+.boton-modal {
+    text-align: center; /* Centra el contenido horizontalmente */
+    margin-top: 20px;
+}
+
+.boton-modal label {
+    background-color: rgb(31, 136, 205);
+    font-weight: 800;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 300ms ease;
+    display: inline-block;
+    padding: 13px 45px;
+    font-size: 16px;
+    color: #ffffff;
+    text-transform: capitalize;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.boton-modal label:hover{
+    background-color: rgb(83, 150, 250);
+}
+
+#btn-modal{
+    display: none;
+}
+.container-modal{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+    background-color: rgba(144, 148, 150, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+#btn-modal:checked ~ .container-modal{
+    display: flex;
+}
+.content-modal{
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    padding:  15px;
+    border-radius: 32px;
+}
+
+.content-modal p{
+    padding: 15px 0px;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+}
+.content-modal .btn-cerrar{
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+.content-modal .btn-cerrar label{
+    padding: 7px 10px;
+    background-color:  rgb(31, 136, 205)ack;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+.content-modal .btn-cerrar label:hover{
+    background-color: rgb(31, 136, 205);
+}
+.cerrar-modal{
+    width:100%;
+    height: 100vh;
+    position: absolute;
+    top:0; left: 0;
+    z-index: -1;
+}
+
+.info-img{
+    background-color: #212121;
+    text-align: center;
+    display: flex;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding:  15px;
+    border-radius: 32px;
+    width: 100% ;
+    display: flex;
+    box-sizing: border-box;
+    display: flex;
+    padding: 1.5rem;
+    justify-content: center;
+}
+.content-modal h1{
+	color: black;
+	text-align: center;
+}
+.header-content h2{
+	text-align: center;
+	font-size: 45px;
+}
+.content-modal p{
+	color: black;
+}
+@media screen and (max-width:800px) {
+    .content-modal{
+        width: 90%;
+    }
+}
+.btn-3{
+    text-align: center; /* Centra el contenido horizontalmente */
+    margin-top: 20px;
+	background-color:rgb(31, 136, 205) ;
+	color: white;
+    font-weight: 800;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 300ms ease;
+    display: inline-block;
+    padding: 10px 42px;
+    font-size: 13px;
+    color: #ffffff;
+    text-transform: capitalize;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+.carousel{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    width:100%; 
+    height:100%; 
+  }
+
+</style>
+
+
+<!-- Carrusel -->
+<br><br>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+	<div class="carousel-inner">
+	  <div class="carousel-item active">
+		<img class="d-block w-100" src= "{% static 'img/carrusel1.jpg' %}" alt="First slide">
+	  </div>
+	  <div class="carousel-item">
+		<img class="d-block w-100" src= "{% static 'img/carrusel4.jpg' %}"alt="Second slide">
+	  </div>
+	  <div class="carousel-item">
+		<img class="d-block w-100" src="{% static 'img/carrusel3.jpg' %}" alt="Third slide">
+	  </div>
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+	  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Anterior</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+	  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Siguiente</span>
+	</a>
+  </div>
+  <br><br>
+
+<br>
 
 			<!-- Highlights -->
 				<section class="wrapper style1">
@@ -31,7 +245,45 @@
 						</div>
 					</div>
 				</section>
+				<br><br><br>
+ <!--modal -->
+ <header>
+	<div class="header-content container">
+	  <div class="header-txt">
+		 <h2><a href="#" id="logo">LIVE MUSIC <em>Horario de Atención</em></a></h2>
 
+   </header>
+<section class="info container" >
+
+<div class="info-img">
+	<img src="{% static 'img/modal.png' %}"alt="" width="450px;" height="450px;" align-items="center;">
+</div>
+<div class="info-txt" >
+	<h2></h2>
+
+		<!--Boton-->
+	<div class="boton-modal">
+		<label for="btn-modal">
+			INFORMACIÓN
+		</label>
+
+	</div>
+	<br>
+	<!--Ventana Modal-->
+		<input type="checkbox" id="btn-modal">
+		<div class="container-modal">
+			<div class="content-modal">
+				<h3>¡Bienvenidos!</h3>
+				<p>Somos live-MUSIC, nuestro horario de atención es de lunes a sábado, desde las 08:00hrs hasta las 18:00hrs. Al final de esta página esta toda la información para comunicarte o puedes escribir directamente en nuestra página de contactanos.</p>
+				<img src="" alt="">
+				<div class="btn-cerrar">
+				  <a href="{% url 'contactanos'%}" class="btn-3" >Contactanos</a>
+				  
+				</div>
+			</div>
+			<label for="btn-modal" class="cerrar-modal"></label>
+		</div>
+<br><br>
 			<!-- Gigantic Heading -->
 				<section class="wrapper style2">
 					<div class="container">
@@ -87,5 +339,5 @@
 					</div>
 				</section>
 
-
+				<script src="static/js/modal.js"></script>
 {%endblock%}

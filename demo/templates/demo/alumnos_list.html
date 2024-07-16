@@ -1,28 +1,46 @@
 {% extends "demo/base.html" %}
 
 {% block content %}
+
 <style>
   body {
     background-color: black;
+    color: white;
   }
 
-  td {
+  td, th {
     color: white;
     font-size: 18px;
+    padding: 8px;
+    text-align: left;
   }
 
   th {
-    color: black;
-    font-size: 18px;
+    background-color: black;
   }
 
   button {
     font-size: 15px;
   }
 
-  @media screen and (max-width: 736px) {
+  @media screen and (max-width: 768px) {
     .container1 {
-      width: calc(100% - 80px);
+      width: calc(100% - 20px);
+    }
+
+    .responsive-table {
+      overflow-x: auto;
+    }
+
+    .acciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .acciones a {
+      flex: 0 0 48%; /* Ajustar el ancho según necesidad */
     }
   }
 
@@ -40,16 +58,14 @@
     text-align: left;
   }
 
-  .responsive-table th {
-    background-color: #f2f2f2;
-  }
-
   .responsive-table tbody tr:nth-child(even) {
-    background-color: black;
+    background-color: #333;
   }
 
   /* Estilos para los botones */
   .btn-container {
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
   }
 
@@ -104,7 +120,7 @@
     border: 2px solid #ccc;
     border-radius: 5px;
     font-size: 20px;
-}
+  }
 </style>
 
 <div id="idMensaje">
@@ -117,38 +133,40 @@
   <div class="container1-content container">
     <div class="container1-txt">
       <!-- Campo de búsqueda -->
-      <input type="text" id="buscarInput" placeholder="Buscar por nombre...">
+      <input type="text" id="buscarInput" placeholder="Buscar por nombre o rut...">
 
       <!-- Tabla de postulantes -->
-      <table id="tablaPostulantes" class="responsive-table">
-        <thead>
-          <tr>
-            <th>RUN</th>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Iteración sobre los datos de postulantes -->
-          {% for postulante in demo %}
-          <tr>
-            <td>{{ postulante.rut }}</td>
-            <td>{{ postulante.nombre }} {{ postulante.apellido_paterno }} {{ postulante.apellido_materno }}</td>
-            <td>{{ postulante.telefono }}</td>
-            <td>
-              <!-- Botones de acción para eliminar y modificar -->
-              <a href="{% url 'alumnos_del' pk=postulante.rut %}">
-                <button class="btn btn-danger">Eliminar</button>
-              </a>
-              <a href="{% url 'alumnos_findEdit' pk=postulante.rut %}">
-                <button class="btn btn-success">Modificar</button>
-              </a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table id="tablaPostulantes" class="responsive-table">
+          <thead>
+            <tr>
+              <th>RUN</th>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Iteración sobre los datos de postulantes -->
+            {% for postulante in demo %}
+            <tr>
+              <td>{{ postulante.rut }}</td>
+              <td>{{ postulante.nombre }} {{ postulante.apellido_paterno }} {{ postulante.apellido_materno }}</td>
+              <td>{{ postulante.telefono }}</td>
+              <td class="acciones">
+                <!-- Botones de acción para eliminar y modificar -->
+                <a href="{% url 'alumnos_del' pk=postulante.rut %}">
+                  <button class="btn btn-danger">Eliminar</button>
+                </a>
+                <a href="{% url 'alumnos_findEdit' pk=postulante.rut %}">
+                  <button class="btn btn-success">Modificar</button>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
 
       <!-- Botones para navegación -->
       <div class="btn-container">

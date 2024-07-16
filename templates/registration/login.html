@@ -1,28 +1,49 @@
 {% extends "demo/base.html" %}
 {% block content %}
+<style>
+    /* Estilos para los inputs */
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="time"],
+    input[type="search"],
+    textarea {
+        color: black; /* Color del texto en negro */
+        background-color: #fff; /* Fondo blanco */
+        border: 1px solid #ccc; /* Borde gris */
+        padding: 8px; /* Espaciado interior */
+        border-radius: 4px; /* Esquinas redondeadas */
+        width: 100%; /* Ancho al 100% del contenedor */
+        font-size: 14px; /* Tamaño de fuente */
+        box-sizing: border-box; /* Box-sizing para incluir borde y padding en el tamaño total */
+    }
+</style>
+
 <div class="container">
     <div class="row">
         {% if mensaje %}
         <div class="alert alert-primary" role="alert" id="idMensaje">
-          
-          {{mensaje}}
-          
+            {{ mensaje }}
         </div>
-        {%endif%}
+        {% endif %}
 
-        <a href="{% url 'registro'%}">Registrate</a>
-        <form  method="POST">
+        <a href="{% url 'registro' %}">Registrate</a>
+        <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Entrar</button>
         </form>
     </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-  $(document).ready(function(){
-    $("#idMensaje").delay(2000).fadeOut("slow");
-  })
+    $(document).ready(function () {
+        $("#idMensaje").delay(2000).fadeOut("slow");
+    });
 </script>
-    {% endblock content %}
+{% endblock content %}

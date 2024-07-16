@@ -145,12 +145,46 @@
         }
 
 
-        {% comment %} button[class="button1"]{
-            margin-left: 45%;
-            border: none;
-            cursor: pointer;
-        }  {% endcomment %}
 
+        form {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .actions {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .actions li {
+            margin: 0;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
         button[class="btn btn-info"] {
                 margin: 0 auto; /* Esto centrará horizontalmente el botón */
                 border: none;
@@ -193,22 +227,24 @@
                         
                         <h1 style="padding: 4%; font-size: 30px; text-align: center;" >¿QUIERES TRABAJAR CON LIVE-MUSIC?</h1>
                         <p style="text-align: center; font-size: 25px;"> Ingresa tus datos aquí y nos comunicaremos contigo</p>
+                    
                     </div>
                 </form class="was-validated" style="padding: 1%;" >
+                
+                                <!-- esto es para java en el boton-->  
+                                {% csrf_token %}
+                                <ul class="actions">
+                                    {% comment %} <div style="text-align: center;"> {% endcomment %}
+                                        <a href='alumnosAdd'> <br> 
+                                            <button class="btn btn-info">POSTULAR</button>
+                                        </a>
+                                    {% comment %} </div> {% endcomment %}
+                                </ul>   
             </div>
-
-            <!-- esto es para java en el boton-->  
-            {% csrf_token %}
-            <ul class="actions">
-                {% comment %} <div style="text-align: center;"> {% endcomment %}
-                    <a href='alumnosAdd'> <br> 
-                        <button class="btn btn-info">Postular</button>
-                    </a>
-                {% comment %} </div> {% endcomment %}
-            </ul>    
         </div>
-    </header>
 
+    </header>
+<br><br>
     <!-- ESCRIBENOS-->  
     <header class="container1">
         <div class="container1-content container">

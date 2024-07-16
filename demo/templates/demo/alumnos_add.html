@@ -12,6 +12,26 @@
             text-align: left;
             font-size: 17px;
         }
+        /* Estilos para todos los inputs */
+        input[type="text"], input[type="date"], input[type="mail"], select {
+            background-color: white; /* Fondo blanco */
+            color: black; /* Color del texto negro */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px; /* Añade espaciado entre los inputs */
+        }
+    
+        input[type="text"]::placeholder, input[type="date"]::placeholder, input[type="email"]::placeholder {
+            color: #999; /* Color del texto del placeholder */
+        }
+    
+        /* Estilos para las opciones dentro del select */
+        select option {
+            background-color: white; /* Fondo blanco */
+            color: black; /* Color del texto negro */
+        }
       </style>
 
 

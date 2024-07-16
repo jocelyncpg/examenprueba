@@ -1,59 +1,62 @@
 {% extends "demo/base.html" %}
 {% load static %}
-{%block content %}
 
-					<!-- Banner -->
-                    <section id="banner">
-                        <header>
-                            <h2>Bienvenidos a LIVE music</h2>
-                            <p>PAGAR</p>
-                        </header>        
-                        <table>
-                            <tr>
-                                <th>Total a Pagar: </th>
-                                <td id="total-pago"> 0.00</td>
-                            </tr>
-                        </table>  
-						     <!-- Aquí puedes agregar el formulario de pago -->
-							 <script>
-								// Obtener el total de sessionStorage
-								const total = sessionStorage.getItem('total');
-								if (total) {
-									document.getElementById('total-pago').textContent = total;
-								} else {
-									document.getElementById('total-pago').textContent = '0.00';
-								}
-							</script>   
-		    
-							<style>
-								table {
-									width: 50%;
-									margin: 20px auto;
-									border-collapse: collapse;
-									background-color: white;
-								}
-								th, td {
-									border: 3px solid rgb(38, 219, 243);
-									padding: 5px;
-									text-align: left;
-									color: black;
-								}
-							</style> 
-  
-						</section>
+{% block content %}
+    <style>
+        /* Estilos CSS para el formulario y la tabla */
+        /* ... (estilos existentes) ... */
+        .container img {
+            max-width: 100%;
+            height: 200px; /* Altura específica según lo solicitado */
+            display: block; /* Asegura que la imagen se muestre como bloque */
+            margin: 0 auto; /* Centra la imagen horizontalmente */
+            margin-bottom: 20px; /* Espacio adicional abajo de la imagen */
+        }
 
+ /* Estilos para los inputs específicos dentro del formulario de pago */
+ .container1 #form-pago #card_number,
+ .container1 #form-pago #expiry_date,
+ .container1 #form-pago #cvv {
+     color: #000; /* Color de texto negro */
+     background-color: #fff;
+     border: 1px solid #ccc;
+     padding: 8px;
+     border-radius: 4px;
+     box-sizing: border-box;
+     font-size: 14px;
+     width: 100%;
+     margin-bottom: 10px; /* Espacio entre campos */
+ }
+    </style>
+
+    <table>
+        <tr>
+            <th>Total a Pagar:</th>
+            <td id="total-pago">0.00</td>
+        </tr>
+    </table>
+
+    <!-- Formulario de pago -->
     <header class="container1">
         <div class="container1-content container">
             <div class="container1-txt">
+                <img src="{% static 'img/tarjeta.png' %}" alt="Imagen de Tarjeta" style="height: 200px;" />
+
                 <form id="form-pago" method="post" action="#">
                     {% csrf_token %}
+                    <!-- Campos de la tarjeta -->
                     <label for="card_number">Número de Tarjeta:</label>
                     <input type="text" id="card_number" name="card_number" required><br><br>
+
                     <label for="expiry_date">Fecha de Vencimiento:</label>
                     <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" required><br><br>
+
                     <label for="cvv">CVV:</label>
                     <input type="text" id="cvv" name="cvv" required><br><br>
+
+                    <!-- Campo oculto para el total a pagar -->
                     <input type="hidden" id="total_pago_hidden" name="total_pago" value="0.00">
+
                     <button type="submit">Pagar</button>
                 </form>
             </div>
@@ -61,27 +64,61 @@
     </header>
 
 
-    <script>
 
-        // Función para redirigir y mostrar mensaje aleatorio
-        function redirigirAPago() {
-            // Simulación de pago exitoso o sin suficiente saldo
-            const exito = Math.random() < 0.5; // 50% de probabilidad de éxito
-
-            // Redirigir a la página de resultado
-            if (exito) {
-                window.location.href = "{% url 'pagoexitoso' %}";
-            } else {
-                window.location.href = "{% url 'saldoinsuficiente' %}";
-            }
+    <style>
+        /* Estilos CSS para la tabla */
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
         }
-
-        // Evento de clic en el botón Pagar
-        document.getElementById('form-pago').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevenir envío automático del formulario
-            redirigirAPago(); // Llamar a la función de redirección y mensaje aleatorio
-        });
+        th, td {
+            border: 3px solid rgb(38, 219, 243);
+            padding: 5px;
+            text-align: left;
+            color: black;
+        }
+    </style>
+    <script>
+        // Función para formatear el número en pesos chilenos
+        function formatNumberToCLP(number) {
+            // Redondear a 2 decimales
+            const rounded = Math.round(number * 100) / 100;
+            
+            // Separar los miles con puntos
+            const formatted = rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            
+            // Agregar el símbolo de pesos chilenos
+            return '$' + formatted;
+        }
+    
+        // Obtener el total de sessionStorage o cualquier fuente de datos
+        const total = sessionStorage.getItem('total');
+        
+        // Mostrar el total formateado en pesos chilenos
+        if (total) {
+            const totalCLP = formatNumberToCLP(parseFloat(total));
+            document.getElementById('total-pago').textContent = totalCLP;
+        } else {
+            document.getElementById('total-pago').textContent = '$0.00';
+        }
+                // Función para redirigir y mostrar mensaje aleatorio
+                function redirigirAPago() {
+                    const exito = Math.random() < 0.5; // Simulación de éxito o fracaso
+                    if (exito) {
+                        window.location.href = "{% url 'pagoexitoso' %}";
+                    } else {
+                        window.location.href = "{% url 'saldoinsuficiente' %}";
+                    }
+                }
+        
+                // Evento de clic en el botón Pagar
+                document.getElementById('form-pago').addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevenir envío automático del formulario
+                    redirigirAPago(); // Llamar a la función de redirección y mensaje aleatorio
+                });
     </script>
+   
 
-
-	{% endblock %}
+{% endblock %}

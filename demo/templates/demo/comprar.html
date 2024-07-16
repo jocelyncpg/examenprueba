@@ -2,8 +2,85 @@
 {% load static %}
 {%block content %}
 <style>
+    /* Estilos para el carrito */
+.carrito {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #252627;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white;
+}
 
-    .carrito-row {
+.carrito-items {
+    margin-bottom: 20px;
+}
+
+.carrito-items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.carrito-items th, .carrito-items td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+}
+
+.carrito-items th {
+    background-color: #313335;
+}
+
+.carrito-total {
+    text-align: right;
+}
+
+.carrito-total strong {
+    font-weight: bold;
+}
+
+.carrito-total .total-precio {
+    font-weight: bold;
+    color: white;
+}
+
+.carrito button {
+    background-color: rgb(31, 136, 205);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.carrito button:hover {
+    background-color: #1e88e5;
+}
+span.total-precio{
+    color:black;
+  }
+.btn-info{
+    background-color: #27a1c2 ;
+    }
+    input.carrito-cantidad{
+        color: black;
+      }
+span.carrito-item-title{
+    color:white;
+}
+
+span.carrito-precio.carrito-colum{
+    color:white;
+}
+
+.carrito-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -16,8 +93,11 @@
         font-weight: bold;
     }
     
-  
-    
+
+  table.carrito-items{
+    color: black;
+  }  
+
     .carrito-pagar {
         text-align: center;
         margin-top: 20px;
@@ -27,8 +107,7 @@
         background-color:  #27a1c2;
         color: white;
         border: none;
-        margin-left: 50%;
-        margin-right: 50%;
+
         padding: 10px 20px;
         cursor: pointer;
         text-decoration: none;
@@ -38,16 +117,46 @@
         background-color:  #27a1c2;
     }
     
-    @media (max-width: 768px) {
+
+ @media (max-width: 768px) {
         .carrito-items {
-            flex-direction: column;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
         }
-    
-        .carrito-item {
+
+        .carrito-items table {
             width: 100%;
         }
-    }
 
+        .carrito-items th,
+        .carrito-items td {
+            padding: 6px;
+        }
+
+        .carrito button {
+            width: 100%;
+        }
+
+        .carrito-cantidad {
+            width: 30px;
+            padding: 4px;
+        }
+
+        .btn-info {
+            max-width: none; /* Ajustar el ancho máximo */
+            width: 100%; /* Ancho completo en pantallas pequeñas */
+            padding: 12px 20px;
+            margin-top: 10px;
+        }
+
+        .borrar {
+            width: 100%;
+            padding: 8px 20px;
+            margin-top: 10px;
+        }
+    }
 </style>
 
 
@@ -70,11 +179,12 @@
 
         <div class="carrito-total">
             <strong>Total: </strong><span class="total-precio">$0</span>
+            <a href="#" onclick="redirigirAPago()">
+                <button class="btn btn-info">Pagar</button>
+            </a>
         </div>
         <br>
-        <a href="#" onclick="redirigirAPago()">
-            <button class="btn btn-info">Pagar</button>
-        </a>
+
 
         <br><br>
     </div>
