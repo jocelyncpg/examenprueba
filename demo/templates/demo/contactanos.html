@@ -157,7 +157,7 @@
                 cursor: pointer;
             }
 
-            button[class="btn btn-info"] {
+        button[class="button_1"] {
                 margin: 0 auto; /* Esto centrará horizontalmente el botón */
                 border: none;
                 cursor: pointer;
@@ -183,6 +183,7 @@
         }
     </style>
 <br>
+    <!-- ¿QUIERES TRABAJAR CON LIVE-MUSIC?-->
     <header class="container1">
         <div class="container1-content container">
             <div class="container1-txt">
@@ -192,21 +193,23 @@
                         
                         <h1 style="padding: 4%; font-size: 30px; text-align: center;" >¿QUIERES TRABAJAR CON LIVE-MUSIC?</h1>
                         <p style="text-align: center; font-size: 25px;"> Ingresa tus datos aquí y nos comunicaremos contigo</p>
-                    </div>    
+                    </div>
                 </form class="was-validated" style="padding: 1%;" >
             </div>
 
             <!-- esto es para java en el boton-->  
             {% csrf_token %}
             <ul class="actions">
-                
-                <a href='alumnosAdd'> <br>
-                    <button class="btn btn-info">Postular</button>
-                </a>
+                {% comment %} <div style="text-align: center;"> {% endcomment %}
+                    <a href='alumnosAdd'> <br> 
+                        <button class="btn btn-info">Postular</button>
+                    </a>
+                {% comment %} </div> {% endcomment %}
             </ul>    
         </div>
     </header>
 
+    <!-- ESCRIBENOS-->  
     <header class="container1">
         <div class="container1-content container">
             <div class="container1-txt">
@@ -225,17 +228,14 @@
                     </div>
             <form class="was-validated" style="padding: 1%;" >
                 <div class="mb-3">
-                <h1 style="padding: 4%;" > </h1>
-                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Por favor, escribe tu mensaje." required></textarea>
-                <!-- esto es para java en el boton-->  
-                <br>
-                <ul class="actions">
-                    <p id="demo"></p>                    
-                    <div style="text-align: center;">
-                        <button class="button_1" type="submit" onclick='document.getElementById("demo"), alert("Envío exitoso!")= ""'>ENVIAR</button>
-                    </div>
-                    
-                </ul>     
+                    <h1 style="padding: 4%;" > </h1>
+                    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Por favor, escribe tu mensaje." required></textarea>
+                    <!-- esto es para java en el boton-->  
+                    <br>
+                    <ul class="actions">
+                        <p id="demo"></p>
+                            <button class="button_1" type="submit" onclick='document.getElementById("demo"), alert("Envío exitoso!")= ""'>ENVIAR</button>                    
+                    </ul>     
                 </div>
             </form>
     </header>
