@@ -48,27 +48,27 @@
     <form action="{% url 'alumnosAdd' %}" method="POST">
                     {% csrf_token %}
 
-                    <pre >Rut:                <input type="text" name="rut"  ></pre>
-                    <pre >Nombre:             <input type="text" name="nombre"  ></pre>
-                    <pre >Apellido P.:        <input type="text" name="paterno"  ></pre>
-                    <pre >Apellido M.:        <input type="text" name="materno"  ></pre>
+                    <pre >Rut:                <input type="text" name="rut" required ></pre>
+                    <pre >Nombre:             <input type="text" name="nombre" required ></pre>
+                    <pre >Apellido P.:        <input type="text" name="paterno" required ></pre>
+                    <pre >Apellido M.:        <input type="text" name="materno" required ></pre>
                     <br>
-                    <pre >Fecha Nac.:            <input type="date" name="fechaNac"  ></pre>
+                    <pre >Fecha Nac.:            <input type="date" name="fechaNac" required ></pre>
                     <br>
-                    <pre >Genero                 <select name="genero"> 
+                    <pre >Genero                 <select name="genero" required > 
 
                         {% for genero in generos %}
                         <option value="{{genero.id_genero}}">{{genero.genero}}</option>
                         {% endfor %}
                     </select></pre>
-                    <pre>Celular:            <input type="text" name="telefono"  ></pre>
+                    <pre>Celular:            <input type="text" name="telefono" required ></pre>
                     <br>
-                    <pre >Email:              <input type="mail" name="email"  ></pre>
+                    <pre >Email:              <input type="mail" name="email" required ></pre>
                     <br>
                     <pre >Direccion:         <input type="text" name="direccion"  ></pre>
 
 <br><br>
-                    <input type="submit" name="opcion" value="Agregar">
+                    <input type="submit" name="opcion" value="Agregar" required >
 
                 </form> <br><br>
 
