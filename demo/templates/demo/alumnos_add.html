@@ -1,43 +1,11 @@
 {% extends "demo/base.html" %}
 
 {%block content %}
+{% load static %}
 
+    <link rel="stylesheet" href={% static "css/style_2.css" %}>
 
-    <style>
-        .idMensaje{
-            color: white;
-        }
-        .container pre{
-            color: white;
-            text-align: left;
-            font-size: 17px;
-        }
-        .container{
-            color:white;
-        }
-        /* Estilos para todos los inputs */
-        input[type="text"], input[type="date"], input[type="mail"], select {
-            background-color: white; /* Fondo blanco */
-            color: black; /* Color del texto negro */
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-bottom: 10px; /* Añade espaciado entre los inputs */
-        }
     
-        input[type="text"]::placeholder, input[type="date"]::placeholder, input[type="email"]::placeholder {
-            color: #999; /* Color del texto del placeholder */
-        }
-    
-        /* Estilos para las opciones dentro del select */
-        select option {
-            background-color: white; /* Fondo blanco */
-            color: black; /* Color del texto negro */
-        }
-      </style>
-
-
     <div style=" text-align: center;">
         <h2>Datos Postulantes</h2><br>
 <div id="idMensajes">
@@ -77,34 +45,5 @@
 
             </div>
             </main>
-    <style>
-    input[type="text"] {
-        background-color: white; /* Fondo blanco */
-        color: black; /* Color del texto negro */
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-    
-    input[type="text"]::placeholder {
-        color: #999; /* Color del texto del placeholder */
-    }
-    /* Estilos para el campo select */
-    select {
-        background-color: white; /* Fondo blanco */
-        color: black; /* Color del texto negro */
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-
-    /* Estilos para las opciones dentro del select */
-    select option {
-        background-color: white; /* Fondo blanco */
-        color: black; /* Color del texto negro */
-    }
-    </style>
 
     {% endblock %}

@@ -1,0 +1,57 @@
+body{
+    background-color: black;
+    color: white;
+    
+}
+
+.social-media {
+    padding: 2em;
+    background-color: black;
+}
+
+.social-media h3 {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.icons {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.icons li {
+    margin: 0.5em;
+}
+
+.icons a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5em;
+}
+
+/* Responsive Styles */
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+    .social-media {
+        padding: 1.5em;
+    }
+
+    .icons a {
+        font-size: 1.3em;
+    }
+}
+
+/* Small devices (phones, 576px and up) */
+@media (max-width: 576px) {
+    .social-media {
+        padding: 1em;
+    }
+
+    .icons a {
+        font-size: 1.2em;
+    }
+}
