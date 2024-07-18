@@ -1,0 +1,19 @@
+.message-box {
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+}
+.message-box h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: red;
+}
+.message-box p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}

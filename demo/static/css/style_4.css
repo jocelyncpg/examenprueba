@@ -1,0 +1,118 @@
+body {
+    background-color: black;
+    color: white;
+  }
+
+  td, th {
+    color: white;
+    font-size: 18px;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: black;
+  }
+
+  button {
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container1 {
+      width: calc(100% - 20px);
+    }
+
+    .responsive-table {
+      overflow-x: auto;
+    }
+
+    .acciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .acciones a {
+      flex: 0 0 48%; /* Ajustar el ancho según necesidad */
+    }
+  }
+
+  /* Estilos para la tabla */
+  .responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .responsive-table th,
+  .responsive-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .responsive-table tbody tr:nth-child(even) {
+    background-color: #333;
+  }
+
+  /* Estilos para los botones */
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+
+  /* Estilos para el campo de búsqueda */
+  #buscarInput {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  }
+
+  input[type="text"] {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Color del texto negro */
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+  }

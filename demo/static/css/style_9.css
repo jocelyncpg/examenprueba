@@ -1,0 +1,100 @@
+body {
+    background-color: black;
+    color: white; /* Cambiamos el color del texto para que sea visible sobre el fondo negro */
+  }
+
+  .responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto; /* Agregamos scroll horizontal para tablas muy anchas */
+  }
+
+  .responsive-table th, .responsive-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap; /* Evita el salto de línea en los textos largos */
+  }
+
+  .responsive-table th {
+    background-color: #f2f2f2;
+    color: black; /* Cambiamos el color del encabezado para que sea visible */
+  }
+
+  .responsive-table tbody tr:nth-child(even) {
+    background-color: #212529;
+  }
+
+  .btn-container {
+    margin-top: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+
+  .btn-info:hover {
+    background-color: #117a8b;
+    border-color: #10707f;
+  }
+
+  /* Estilos adicionales para tablas en dispositivos móviles */
+  @media screen and (max-width: 768px) {
+    .responsive-table {
+      overflow-x: auto; /* Asegura que la tabla tenga scroll horizontal */
+      display: block;
+      width: 100%;
+    }
+
+    .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr {
+      display: block;
+    }
+
+    .responsive-table tr {
+      border: 1px solid #ccc; /* Agregamos borde entre filas en dispositivos móviles */
+      margin-bottom: 10px;
+    }
+
+    .responsive-table td {
+      border: none;
+      border-bottom: 1px solid #ddd; /* Agregamos borde inferior a las celdas */
+      text-align: left;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    .responsive-table td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    .responsive-table td:nth-of-type(1):before { content: "RUN: "; }
+    .responsive-table td:nth-of-type(2):before { content: "Nombre: "; }
+    .responsive-table td:nth-of-type(3):before { content: "Teléfono: "; }
+    .responsive-table td:nth-of-type(4):before { content: "Fecha Nacimiento: "; }
+    .responsive-table td:nth-of-type(5):before { content: "Dirección: "; }
+    .responsive-table td:nth-of-type(6):before { content: "Email: "; }
+    .responsive-table td:nth-of-type(7):before { content: "Género: "; }
+  }

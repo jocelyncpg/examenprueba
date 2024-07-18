@@ -1,0 +1,40 @@
+/* Estilos CSS para el formulario y la tabla */
+        /* ... (estilos existentes) ... */
+        .container img {
+            max-width: 100%;
+            height: 200px; /* Altura específica según lo solicitado */
+            display: block; /* Asegura que la imagen se muestre como bloque */
+            margin: 0 auto; /* Centra la imagen horizontalmente */
+            margin-bottom: 20px; /* Espacio adicional abajo de la imagen */
+        }
+
+ /* Estilos para los inputs específicos dentro del formulario de pago */
+ .container1 #form-pago #card_number,
+ .container1 #form-pago #expiry_date,
+ .container1 #form-pago #cvv {
+     color: #000; /* Color de texto negro */
+     background-color: #fff;
+     border: 1px solid #ccc;
+     padding: 8px;
+     border-radius: 4px;
+     box-sizing: border-box;
+     font-size: 14px;
+     width: 100%;
+     margin-bottom: 10px; /* Espacio entre campos */
+ }
+
+
+ /* Style que va despues del Campo oculto para el total a pagar */
+ /* Estilos CSS para la tabla */
+ table {
+    width: 50%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+}
+th, td {
+    border: 3px solid rgb(38, 219, 243);
+    padding: 5px;
+    text-align: left;
+    color: black;
+}

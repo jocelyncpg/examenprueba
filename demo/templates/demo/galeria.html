@@ -1,26 +1,9 @@
 {% extends "demo/base.html" %}
 
 {% block content %}
-<style>
-    h1 {
-        color: white;
-        font-size: 35px;
-        text-align: center;
-    }
+{% load static %}
 
-    .container1 {
-        text-align: center; /* Asegura que el contenido dentro de container1 esté centrado */
-    }
-
-    .btn-container {
-        margin-top: 20px; /* Espacio superior para separar del título */
-    }
-
-    .btn-container button {
-        margin: 0 auto; /* Centra horizontalmente el botón dentro de su contenedor */
-        display: block; /* Asegura que el botón ocupe todo el ancho disponible */
-    }
-</style>
+    <link rel="stylesheet" href={% static "css/style_7.css" %}>
 
 {% if user.is_staff %}
 <h1>Bienvenido, usted es un:</h1>

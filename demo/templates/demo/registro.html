@@ -1,12 +1,8 @@
 {% extends "demo/base.html" %}
-
+{% load static %}
 {%block content %}
 
-<style>
-  .form-control {
-    color: black !important;
-  }
-</style>
+  <link rel="stylesheet" href={% static "css/style_13.css" %}>
 
 <div class="container">
     {% if mensaje %}

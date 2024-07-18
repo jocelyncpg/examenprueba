@@ -1,13 +1,8 @@
 {% extends "demo/base.html" %}
-
+{% load static %}
 {%block content %}
-<style>
-    h1{
-        color: white;
-        font-size: 35px;
-        text-align: center;
-    }
-</style>
+
+    <link rel="stylesheet" href={% static "css/style_12.css" %}>
 
 <h1>Este es el perfil del usuario {{user.username}} </h1>
 
