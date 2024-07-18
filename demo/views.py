@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
 # Create your views here.
 def index(request):
     context={"clase": "inicio"}
@@ -140,6 +141,8 @@ def crud(request):
         'demo': page_obj,  # Pasar el objeto de paginación a la plantilla
     }
     return render(request, 'demo/alumnos_list.html', context)
+
+
 
 def alumnosAdd(request):
     if request.method != "POST":

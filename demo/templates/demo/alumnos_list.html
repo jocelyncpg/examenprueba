@@ -2,6 +2,10 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <style>
   body {
     background-color: black;
@@ -137,6 +141,7 @@
 
       <!-- Tabla de postulantes -->
       <div class="table-responsive">
+        
         <table id="tablaPostulantes" class="responsive-table">
           <thead>
             <tr>
@@ -149,15 +154,13 @@
           <tbody>
             <!-- Iteración sobre los datos de postulantes -->
             {% for postulante in demo %}
-            <tr>
+            <tr id="postulante-{{ postulante.rut }}">
               <td>{{ postulante.rut }}</td>
               <td>{{ postulante.nombre }} {{ postulante.apellido_paterno }} {{ postulante.apellido_materno }}</td>
               <td>{{ postulante.telefono }}</td>
               <td class="acciones">
                 <!-- Botones de acción para eliminar y modificar -->
-                <a href="{% url 'alumnos_del' pk=postulante.rut %}">
-                  <button class="btn btn-danger">Eliminar</button>
-                </a>
+                <button class="btn btn-danger" onclick="eliminarPostulante('{{ postulante.rut }}')">Eliminar</button>
                 <a href="{% url 'alumnos_findEdit' pk=postulante.rut %}">
                   <button class="btn btn-success">Modificar</button>
                 </a>
@@ -200,10 +203,12 @@
 
       for (let i = 0; i < rows.length; i++) {
         let nombre = rows[i].getElementsByTagName('td')[1];
+        let rut = rows[i].getElementsByTagName('td')[0];
 
-        if (nombre) {
-          let textValue = nombre.textContent || nombre.innerText;
-          if (textValue.toUpperCase().indexOf(filter) > -1) {
+        if (nombre && rut) {
+          let textValueNombre = nombre.textContent || nombre.innerText;
+          let textValueRut = rut.textContent || rut.innerText;
+          if (textValueNombre.toUpperCase().indexOf(filter) > -1 || textValueRut.toUpperCase().indexOf(filter) > -1) {
             rows[i].style.display = '';
           } else {
             rows[i].style.display = 'none';
@@ -212,16 +217,28 @@
       }
     });
   });
-</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  function eliminarPostulante(rut) {
+    $.ajax({
+      url: "{% url 'alumnos_del' pk='0' %}".replace('0', rut),
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
+      },
+      success: function(response) {
+        $('#postulante-' + rut).remove();
+      },
+      error: function(xhr, status, error) {
+        console.error('Error al eliminar el postulante:', error);
+      }
+    });
+  }
+</script>
 
 <script>
   $(document).ready(function () {
     $("#idMensaje").delay(2000).fadeOut("slow");
-  })
+  });
 </script>
 
 {% endblock %}
