@@ -1,26 +1,32 @@
 {% extends "demo/base.html" %}
-{% load static %}
-{%block content %}
+{% block content %}
 
 <style>
-    .container1 h1{
+    .message-box {
+        background-color: #343a40;
         color: white;
-        font-size: 45px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin: 20px auto;
+        max-width: 600px;
+        text-align: center;
     }
-    .container1 p{
-        color: white;
-        font-size: 30px;
+    .message-box h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        color: red;
+    }
+    .message-box p {
+        font-size: 1.2em;
+        margin-bottom: 10px;
     }
 </style>
 
-    <header class="container1">
-        <div class="container1-content container">
-            <div class="container1-txt">
-                <h1>Saldo Insuficiente</h1>
-                <br>
-                <p>Lo sentimos, no tienes saldo suficiente para completar la transacción.</p>
-                <p>Por favor, verifica tu información de pago e intenta nuevamente.</p>
-            </div>
-        </div>
-    </header>
+<div class="message-box">
+    <h1>Saldo Insuficiente</h1>
+    <p>Lo sentimos, no tienes saldo suficiente para completar la transacción.</p>
+    <p>Por favor, verifica tu información de pago e intenta nuevamente.</p>
+</div>
+
 {% endblock %}
