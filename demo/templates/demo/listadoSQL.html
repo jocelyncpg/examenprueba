@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+<p id="lista"></p>
 
   <link rel="stylesheet" href={% static "css/style_9.css" %}>
 
@@ -36,7 +37,7 @@
       </tbody>
       {% endif %}
     </table>
-    <a href="{% url 'crud' %}" class="btn btn-info">Volver a Postulantes</a>
+    <a href="{% url 'crud' %}#postul" class="btn btn-info">Volver a Postulantes</a>
   </div>
 </section>
 

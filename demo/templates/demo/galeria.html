@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+<p id="galer"></p>
 
     <link rel="stylesheet" href={% static "css/style_7.css" %}>
 
@@ -25,7 +26,7 @@
     <!-- Botón para ver postulantes -->
     {% csrf_token %}
     <div class="btn-container">
-        <a href="{% url 'crud' %}">
+        <a href="{% url 'crud' %}#postul">
             <button class="btn btn-info">Postulantes</button>
         </a>
     </div>

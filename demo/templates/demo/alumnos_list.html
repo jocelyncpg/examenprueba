@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+<p id="postul"></p>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
@@ -59,18 +60,18 @@
       <!-- Botones para navegación -->
       <div class="btn-container">
         {% if demo.has_previous %}
-        <a href="?page={{ demo.previous_page_number }}" class="btn btn-info">Volver</a>
+        <a href="?page={{ demo.previous_page_number }}#postul" class="btn btn-info">Volver</a>
         {% endif %}
         {% if demo.has_next %}
-        <a href="?page={{ demo.next_page_number }}" class="btn btn-info">Siguiente</a>
+        <a href="?page={{ demo.next_page_number }}#postul" class="btn btn-info">Siguiente</a>
         {% endif %}
       </div>
 
       <!-- Contenedor de botones adicionales -->
       <div class="btn-container">
-        <a href="{% url 'alumnosAdd' %}" class="btn btn-info">Agregar</a>
+        <a href="{% url 'alumnosAdd' %}#postula" class="btn btn-info">Agregar</a>
         <a href="{% url 'index' %}" class="btn btn-info">Inicio</a>
-        <a href="{% url 'listadoSQL' %}" class="btn btn-info">Lista</a>
+        <a href="{% url 'listadoSQL' %}#lista" class="btn btn-info">Lista</a>
       </div>
     </div>
   </div>

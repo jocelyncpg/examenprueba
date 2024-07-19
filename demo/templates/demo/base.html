@@ -37,18 +37,18 @@
 								<li>
 									<a href="#">Productos</a>
 									<ul>
-										<li><a href="{% url 'vinilo'%}">Vinilos</a></li>
-										<li><a href="{% url 'cd'%}">CD</a></li>
-										<li><a href="{% url 'cassette'%}">Cassette</a></li>
-										<li><a href="{% url 'comprar'%}">Todo</a></li>
+										<li><a href="{% url 'vinilo'%}#main">Vinilos</a></li>
+										<li><a href="{% url 'cd'%}#main">CD</a></li>
+										<li><a href="{% url 'cassette'%}#main">Cassette</a></li>
+										<li><a href="{% url 'comprar'%}#comp">Todo</a></li>
 									</ul>
 								</li>
 							<li {%if clase == 'trabaja'%}
-								class="current" {%endif%}><a href="{% url 'trabaja'%}">Trabaja Aquí</a></li>
+								class="current" {%endif%}><a href="{% url 'trabaja'%}#trabajo">Trabaja Aquí</a></li>
 
 								<li>
 									<li {%if clase == 'contactanos'%}
-									class="current" {%endif%}><a href="{% url 'contactanos'%}">Contactanos</a></li>
+									class="current" {%endif%}><a href="{% url 'contactanos' %}#contato">Contactanos</a></li>
 	
 									<li>
 									{% if user.is_authenticated %}
@@ -72,16 +72,16 @@
 									{% endif %}
 								</li>
 								<li {%if clase == 'galeria'%}
-                                class="current" {%endif%}><a href="{% url 'galeria'%}">Galeria</a></li>
+                                class="current" {%endif%}><a href="{% url 'galeria'%}#galer">Galeria</a></li>
 								{% if user.is_authenticated %}
 
 								{% else %}
 								<li {%if clase == 'registro'%}
-                                class="current" {%endif%}><a href="{% url 'registro'%}">Registro</a></li>
+                                class="current" {%endif%}><a href="{% url 'registro'%}#regist">Registro</a></li>
 								{% endif %}
 								 {% comment %} <li><a href="two-sidebar.html">Two Sidebar</a></li>
 								<li><a href="no-sidebar.html">No Sidebar</a></li>  {% endcomment %}					<li {%if clase == 'comprar'%}
-								class="current" {%endif%}><a href="{% url 'comprar'%}">Comprar</a>								
+								class="current" {%endif%}><a href="{% url 'comprar'%}#comp">Comprar</a>								
 								<ul>
 									<li>
 					
@@ -109,10 +109,10 @@
 									<li>
 										<a href="{% url 'comprar'%}">Productos</a>
 										<ul>
-											<li><a href="{% url 'vinilo'%}">Vinilos</a></li>
-											<li><a href="{% url 'cd'%}">CD</a></li>
-											<li><a href="{% url 'cassette'%}">Cassette</a></li>
-											<li><a href="{% url 'comprar'%}">Todo</a></li>
+											<li><a href="{% url 'vinilo'%}#main">Vinilos</a></li>
+											<li><a href="{% url 'cd'%}#main">CD</a></li>
+											<li><a href="{% url 'cassette'%}#main">Cassette</a></li>
+											<li><a href="{% url 'comprar'%}#comp">Todo</a></li>
 										</ul>
 									</li>
 								</ul>
