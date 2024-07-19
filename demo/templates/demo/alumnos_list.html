@@ -47,7 +47,7 @@
               <td class="acciones">
                 <!-- Botones de acción para eliminar y modificar -->
                 <button class="btn btn-danger" onclick="eliminarPostulante('{{ postulante.rut }}')">Eliminar</button>
-                <a href="{% url 'alumnos_findEdit' pk=postulante.rut %}">
+                <a href="{% url 'alumnos_findEdit' pk=postulante.rut %}#modific">
                   <button class="btn btn-success">Modificar</button>
                 </a>
               </td>

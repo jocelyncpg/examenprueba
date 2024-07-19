@@ -2,6 +2,7 @@
 
 {%block content %}
 {% load static %}
+<p id="modific"></p>
 
     <link rel="stylesheet" href={% static "css/style_3.css" %}>
 
@@ -42,7 +43,7 @@
               <input type="submit" name="opcion" value="Actualizar">
           </form><br><br>
         {% endif %} 
-     <a href="{% url 'crud'  %}" ><button class="btn btn-danger">Volver</button></a>   
+     <a href="{% url 'crud'  %}#postul" ><button class="btn btn-danger">Volver</button></a>   
 
     </div>
   </main>
