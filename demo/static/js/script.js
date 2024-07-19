@@ -92,12 +92,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// Funcion Scroll up
+// Funcion Scroll UP
 document.getElementById("button-up").addEventListener("click", scrollUp);
 
 function scrollUp(){
     var currentScroll = document.documentElement.scrollTop;
-    if (currentScroll > 0){
+    if (currentScroll > 430){
         window.requestAnimationFrame(scrollUp);
         window.scrollTo (0, currentScroll - (currentScroll / 10));
     }
